@@ -4,36 +4,31 @@ BEST: an advanced tool for gene set enrichment analysis (GSEA) enhanced
 through chromatin long-range interactions
 
 
-### What is this repository for? ###
+## What is this repository for? ##
 
 * Quick summary
 * Version
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Installation ###
+## Installation ##
 To run best, you need to have the following programs and packages installed in your machine:
-- Python
-- Python Pandas package
-- Bedtools
-- Python PyBedtools package
-- R
-- R gProfileR package
+
+* Python
+* Python Pandas package
+* Bedtools
+* Python PyBedtools package
+* R
+* R gProfileR package
 
 You need to have root privileges, an internet connection, and at least 8 GB of free space on your hard disk.
-
+We here provide the instructions to install all the needed programs and dependencies on Linux CentOS, Linux Ubuntu, and Mac OS. BEST was originally developed on a Linux CentOS computer.
+ 
 #### Instructions for Linux CentOS 7 ####
 Here are instructions to install all the programs and libraries needed by BEST on a Linux CentOS 7.2.1511 computer.
 
 First of all, update your system:
+
 `sudo yum -y update`
 
 Install Python, and Python Pandas package:
@@ -54,7 +49,7 @@ Install the development tools, such as gcc:
 
 `sudo yum -y install zlib-devel`
 
-Install bedtools:
+Install Bedtools:
 
 `sudo yum -y BEDTools`
 
@@ -68,11 +63,106 @@ Install R and its packages RCurl and gProfileR:
 
 `sudo Rscript -e 'install.packages(c("RCurl","gProfileR"), repos="https://cran.rstudio.com")' `
 
-#### Instructions for Linux Ubuntu 12 ####
+#### Instructions for Linux Ubuntu 16 ####
+Here are instructions to install all the programs and libraries needed by BEST on a Linux Ubuntu 16.10 computer.
+
+First of all, update your system:
+
+`sudo apt-get -y update`
+
+Install Python, and Python Pandas package:
+
+`sudo apt-get -y install python`
+
+`sudo apt-get -y install python-pip`
+
+`sudo pip install pandas`
+
+Install the development tools, such as gcc:
+
+`sudo apt-get -y install build-essential`
+
+`sudo apt-get -y install libpng-dev`
+
+`sudo apt-get -y install zlib1g-dev`
+
+Install Bedtools:
+
+`sudo apt-get -y install bedtools`
+
+`sudo pip install pybedtools`
+
+Install R and its packages RCurl and gProfileR:
+
+`sudo apt-get -y install r-base`
+
+`sudo apt-get -y install curl`
+
+`sudo apt-get -y install libcurl3`
+
+`sudo apt-get -y install libcurl4-gnutls-dev`
+
+`sudo Rscript -e 'install.packages(c("RCurl", "gProfileR"), repos="https://cran.rstudio.com")' `
+
 #### Instructions for Mac OS 10 ####
+Here are instructions to install all the programs and libraries needed by BEST on a Mac OS macOS 10.12.2 Sierra. 
+
+First of all, update:
+
+`sudo softwareupdate -iva`
+
+Install rudix:
+`curl -O https://raw.githubusercontent.com/rudix-mac/rpm/2016.12.13/rudix.py`
+
+`sudo python rudix.py install rudix`
+
+Install the development tools, such as gcc:
+
+`xcode-select --install`
+
+Install Python Pandas: 
+
+`sudo easy_install pandas`
+
+Install homebrew:
+
+`ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+
+Install Bedtools:
+
+`brew install homebrew/science/bedtools`
+
+`sudo easy_install pybedtools`
+
+Install R and its packages RCurl and gProfileR:
+
+`brew install r`
+
+`sudo Rscript -e 'install.packages(c("RCurl", "gProfileR"), repos="https://cran.rstudio.com")' `
+
+Since the sed command has a different meaning from Linux to Mac, we have to replace sed with gsed in the main project.sh file:
+
+`brew install gnu-sed`
+
+`cd /BEST_program/bin/`
+
+`gsed -i.bak ‘s/sed/gsed/g’ project.sh`
+
+## Execution instructions ##
+To run best, move to the BEST_program bin folder and execute the project.sh bash file. For example, to run BEST with the PrESSTo lung file as input and the input optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400
+
+`cd /BEST_program/bin/`
+
+On Linux CentOS and Mac:
+
+`sh project.sh ../data/pressto_LUNG_enhancers.bed 24100 9400`
+
+On Linux Ubuntu and Mac:
+
+`bash project.sh ../data/pressto_LUNG_enhancers.bed 24100 9400`
 
 
-### License ###
+## License ##
 All the code is licensed under the [GNU General Public License, version 2 (GPLv2)](http://www.gnu.org/licenses/gpl-2.0-standalone.html).
 
 The file of the Hi-C dataset `\data\hic_allCellTypes` was downloaded from the National Center for Biotechnology Information (NCBI) [Gene Expression Omnibus (GEO) website](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525) and is available under the [GEO copyright license](https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html).
@@ -82,7 +172,7 @@ The file of the APPRIS dataset `\data\appris_data_principal.txt` was downloaded 
 The file of the GENCODE dataset `\data\gencode.v19.annotation.gtf_withproteinids` was downloaded from the [GENCODE website](http://appris.bioinfo.cnio.es/#/downloads) and is available under the [Creative Commons
 Attribution-NonCommercial-NoDerivs 2.5 Generic (CC BY-NC-ND 2.5)](https://creativecommons.org/licenses/by-nc-nd/2.5/).
 
-### Contacts ###
+## Contacts ##
 
 BEST was developed by Davide Chicco, Haixin Sarah Bi, and Michael M. Hoffman at the [Hoffman Lab](http://www.hoffmanlab.org) of the [Princess Margaret Cancer Centre](http://www.uhn.ca/PrincessMargaret/Research/) (Toronto, Ontario, Canada).
 
