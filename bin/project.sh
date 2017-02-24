@@ -6,8 +6,12 @@
 set -o nounset -o pipefail -o errexit
 set -o xtrace
 
-startTime=`date +%s`
+# dependencies:
+# Python pybedtools
+# R gProfileR
 
+
+startTime=`date +%s`
 millisec_time_number=$(date +%s)
 
 # INPUT_FILE="ENCODE_myc.bed"
@@ -21,8 +25,6 @@ if [ ! -f $INPUT_FILE ]; then
     exit 1
 fi
 
-# QUERY_AC=5000
-
 filename=$(basename "$INPUT_FILE")
 filename="${filename%.*}"
 filename=$filename".bed"
@@ -33,10 +35,10 @@ RESULTS_DIR="../results"
 TEMP_DIR="../temp/rand_"${millisec_time_number}
 mkdir $TEMP_DIR
 
-GENE_ANNOTATION_FILE="../../../Gencode/gencode.v19.annotation.gtf_withproteinids"
+GENE_ANNOTATION_FILE="../data/gencode.v19.annotation.gtf_withproteinids"
 TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.txt"
 #HI_C_FILE="../../../_project/data/2015-01-15_Miriam_data/original_GEO_data_files/GSE63525_GM12878_primary_HiCCUPS_looplist_NEW.txt"
-HI_C_FILE="../../../_project/data/2015-01-15_Miriam_data/allCellTypes"
+HI_C_FILE="../data/hic_allCellTypes"
 HI_C_FILTERED_TEMP_FILE="hi_c_filtered.txt"
 OUTPUT_FILE=${INPUT_FILE_NEW}"_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}"_gene_list.txt"
 
@@ -154,10 +156,10 @@ rm $MERGED_TEMP_GO_FILE # output file
 rm $MERGED_TEMP_GO_FILE2
 rm $MERGED_TEMP_GO_FILE3
 rm $MERGED_TEMP_GO_FILE3_SORTED
-rm $MERGED_TEMP_GO_FILE3_SORTED2
 rm $RIGHT_TEMP_GO_FILE3
 rm $CENTRAL_TEMP_GO_FILE3
 rm $LEFT_TEMP_GO_FILE3
+
 
 #GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_AC"${QUERY_AC}"_EXT"${TSS_EXT}"_sorted_rand"${millisec_time_number}
 
@@ -170,6 +172,8 @@ printf $GO_LIST_FILE
 endTime=`date +%s`
 runtime=$((endTime-startTime))
 printf 'project.sh Total running time: %dhours,  %dminutes, %dseconds\n' $(($runtime/3600)) $(($runtime%3600/60)) $(($runtime%60))
+
+rm -r ../temp/*
 
 # to retrieve a genome assembly (solution from https://www.biostars.org/p/98121/):
 # mysql --user=genome --host=genome-mysql.cse.ucsc.edu -A -e
