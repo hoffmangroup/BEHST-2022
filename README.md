@@ -2,13 +2,7 @@
 
 BEST: an advanced tool for gene set enrichment analysis (GSEA) enhanced
 through chromatin long-range interactions
-
-
-## What is this repository for? ##
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+-- [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 
 ## Installation ##
