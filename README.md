@@ -21,7 +21,7 @@ You need to have root privileges, an internet connection, and at least 8 GB of f
 We here provide the instructions to install all the needed programs and dependencies on Linux CentOS, Linux Ubuntu, and Mac OS. BEST was originally developed on a Linux CentOS computer.
  
 #### Instructions for Linux CentOS 7 ####
-Here are instructions to install all the programs and libraries needed by BEST on a Linux CentOS 7.2.1511 computer.
+Here are instructions to install all the programs and libraries needed by BEST on a Linux CentOS 7.2.1511 computer, from a shell terminal.
 
 First of all, update your system:
 
@@ -60,7 +60,7 @@ Install R and its packages RCurl and gProfileR:
 `sudo Rscript -e 'install.packages(c("RCurl","gProfileR"), repos="https://cran.rstudio.com")' `
 
 #### Instructions for Linux Ubuntu 16 ####
-Here are instructions to install all the programs and libraries needed by BEST on a Linux Ubuntu 16.10 computer.
+Here are instructions to install all the programs and libraries needed by BEST on a Linux Ubuntu 16.10 computer, from a shell terminal.
 
 First of all, update your system:
 
@@ -101,7 +101,7 @@ Install R and its packages RCurl and gProfileR:
 `sudo Rscript -e 'install.packages(c("RCurl", "gProfileR"), repos="https://cran.rstudio.com")' `
 
 #### Instructions for Mac OS 10 ####
-Here are instructions to install all the programs and libraries needed by BEST on a Mac OS macOS 10.12.2 Sierra. 
+Here are instructions to install all the programs and libraries needed by BEST on a Mac OS macOS 10.12.2 Sierra, from a shell terminal.
 
 First of all, update:
 
