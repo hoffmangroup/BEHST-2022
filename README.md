@@ -157,7 +157,7 @@ On Linux CentOS and Mac:
 
 `sh project.sh ../data/pressto_LUNG_enhancers.bed 24100 9400`
 
-On Linux Ubuntu and Mac:
+On Linux Ubuntu:
 
 `bash project.sh ../data/pressto_LUNG_enhancers.bed 24100 9400`
 
