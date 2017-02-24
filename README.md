@@ -3,8 +3,8 @@
 BEST: an advanced tool for gene set enrichment analysis (GSEA) enhanced
 through integration of chromatin long-range interactions
 
-### Summary ###
-(!!!) To be written 
+## Summary ##
+() To be written 
 
 [Markdown instuctions](https://bitbucket.org/tutorials/markdowndemo)
 
