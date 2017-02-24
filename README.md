@@ -149,6 +149,10 @@ To run best, move to the BEST_program bin folder and execute the project.sh bash
 
 `cd /BEST_program/bin/`
 
+`mkdir ../results/`
+
+`mkdir ../temp/`
+
 On Linux CentOS and Mac:
 
 `sh project.sh ../data/pressto_LUNG_enhancers.bed 24100 9400`
