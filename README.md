@@ -6,7 +6,7 @@ through chromatin long-range interactions
 
 
 ## Installation ##
-To run best, you need to have the following programs and packages installed in your machine:
+To run BEST, you need to have the following programs and packages installed in your machine:
 
 * Python
 * Python Pandas package
