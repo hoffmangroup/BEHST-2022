@@ -140,14 +140,14 @@ Since the sed command has a different meaning from Linux to Mac, we have to repl
 
 `brew install gnu-sed`
 
-`cd /BEST_program/bin/`
+`cd /BEST/bin/`
 
-`gsed -i.bak â€˜s/sed/gsed/gâ€™ project.sh`
+`gsed -i.bak ‘s/sed/gsed/g’ project.sh`
 
 ## Execution instructions ##
-To run best, move to the BEST_program bin folder and execute the project.sh bash file. For example, to run BEST with the PrESSTo lung file as input and the input optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400
+To run best, move to the /BEST/bin/ folder and execute the project.sh bash file. For example, to run BEST with the PrESSTo lung file as input and the input optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400
 
-`cd /BEST_program/bin/`
+`cd /BEST/bin/`
 
 `mkdir ../results/`
 
