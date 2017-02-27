@@ -142,7 +142,7 @@ Since the sed command has a different meaning from Linux to Mac, we have to repl
 
 `cd /BEST/bin/`
 
-`gsed -i.bak ‘s/sed/gsed/g’ project.sh`
+`gsed -i.bak 's/sed/gsed/g' project.sh`
 
 ## Execution instructions ##
 To run best, move to the /BEST/bin/ folder and execute the project.sh bash file. For example, to run BEST with the PrESSTo lung file as input and the input optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400
