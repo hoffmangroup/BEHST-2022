@@ -112,6 +112,8 @@ Install rudix:
 
 `sudo python rudix.py install rudix`
 
+`sudo rudix install coreutils`
+
 Install the development tools, such as gcc:
 
 `xcode-select --install`
