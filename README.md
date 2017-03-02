@@ -20,8 +20,8 @@ To run BEST, you need to have the following programs and packages installed in y
 You need to have root privileges, an internet connection, and at least 8 GB of free space on your hard disk.
 We here provide the instructions to install all the needed programs and dependencies on Linux CentOS, Linux Ubuntu, and Mac OS. BEST was originally developed on a Linux CentOS computer.
  
-#### Instructions for Linux CentOS 7 ####
-Here are instructions to install all the programs and libraries needed by BEST on a Linux CentOS 7.2.1511 computer, from a shell terminal.
+#### Instructions for Linux CentOS ####
+Here are instructions to install all the programs and libraries needed by BEST on a Linux CentOS computer, from a shell terminal. We tested these instructions on a Dell Latitude 3540 laptop running Linux CentOS 7.2.1511 operating system, in February 2017. If you are using another operating system version, same instructions might be slightly different.
 
 First of all, update your system:
 
@@ -59,8 +59,9 @@ Install R and its packages RCurl and gProfileR:
 
 `sudo Rscript -e 'install.packages(c("RCurl","gProfileR"), repos="https://cran.rstudio.com")' `
 
-#### Instructions for Linux Ubuntu 16 ####
-Here are instructions to install all the programs and libraries needed by BEST on a Linux Ubuntu 16.10 computer, from a shell terminal.
+#### Instructions for Linux Ubuntu ####
+Here are instructions to install all the programs and libraries needed by BEST on a Linux Ubuntu computer, from a shell terminal. We tested these instructions on a Dell Latitude 3540 laptop running Linux Ubuntu 16.10 operating system, in February 2017. If you are using another operating system version, same instructions might be slightly different.
+
 
 First of all, update your system:
 
@@ -100,8 +101,8 @@ Install R and its packages RCurl and gProfileR:
 
 `sudo Rscript -e 'install.packages(c("RCurl", "gProfileR"), repos="https://cran.rstudio.com")' `
 
-#### Instructions for Mac OS 10 ####
-Here are instructions to install all the programs and libraries needed by BEST on a Mac OS macOS 10.12.2 Sierra, from a shell terminal.
+#### Instructions for Mac OS ####
+Here are instructions to install all the programs and libraries needed by BEST on a Mac computer, from a shell terminal. We tested these instructions on an Apple computer running a Mac OS macOS 10.12.2 Sierra operating system, in March 2017. If you are using another operating system version, same instructions might be slightly different.
 
 First of all, update:
 
