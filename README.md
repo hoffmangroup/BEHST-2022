@@ -175,10 +175,10 @@ The file of the APPRIS dataset `\data\appris_data_principal.txt` was downloaded 
 The file of the GENCODE dataset `\data\gencode.v19.annotation.gtf_withproteinids` was downloaded from the [GENCODE website](http://appris.bioinfo.cnio.es/#/downloads) and is available under the [Creative Commons
 Attribution-NonCommercial-NoDerivs 2.5 Generic (CC BY-NC-ND 2.5)](https://creativecommons.org/licenses/by-nc-nd/2.5/).
 
-The files of the VISTA dataset: **what license?**
+The files of the VISTA dataset `\data\*vista*` are publically available on the [VISTA Enhancer Browser website](https://enhancer.lbl.gov/cgi-bin/imagedb3.pl?form=search&show=1&search.form=no&search.result=yes).
 
-The files of the PrESSTo dataset:** what license?
-**
+The files of the PrESSTo dataset `\data\*pressto*` are publically available on the [Promoter Enhancer Slider Selector Tool (PrESSto) website](http://enhancer.binf.ku.dk/presets/#download_view_div).
+
 ## Contacts ##
 
 BEST was developed by Davide Chicco, Haixin Sarah Bi, and Michael M. Hoffman at the [Hoffman Lab](http://www.hoffmanlab.org) of the [Princess Margaret Cancer Centre](http://www.uhn.ca/PrincessMargaret/Research/) (Toronto, Ontario, Canada).
