@@ -47,7 +47,7 @@ Install the development tools, such as gcc:
 
 Install Bedtools:
 
-`sudo yum -y BEDTools`
+`sudo yum -y install BEDTools`
 
 `sudo pip install pybedtools`
 
