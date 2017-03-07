@@ -23,7 +23,7 @@ We here provide the instructions to install all the needed programs and dependen
 #### Instructions for Linux CentOS ####
 Here are the instructions to install all the programs and libraries needed by BEST on a Linux CentOS computer, from a shell terminal. We tested these instructions on a Dell Latitude 3540 laptop running Linux CentOS 7.2.1511 operating system, in February 2017. If you are using another operating system version, some instructions might be slightly different.
 
-First of all, update your system:
+(Optional) First of all, update your system:
 
 `sudo yum -y update`
 
@@ -65,7 +65,7 @@ Here are the instructions to install all the programs and libraries needed by BE
 
 First of all, update your system:
 
-`sudo apt-get -y update`
+(Optional) `sudo apt-get -y update`
 
 Install Python, and Python Pandas package:
 
@@ -106,7 +106,7 @@ Here are the instructions to install all the programs and libraries needed by BE
 
 First of all, update:
 
-`sudo softwareupdate -iva`
+(Optional) `sudo softwareupdate -iva`
 
 Install rudix:
 `curl -O https://raw.githubusercontent.com/rudix-mac/rpm/2016.12.13/rudix.py`
