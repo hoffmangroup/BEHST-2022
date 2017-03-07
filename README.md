@@ -10,12 +10,12 @@ through integration of chromatin long-range interactions
 ## Installation ##
 To run BEST, you need to have the following programs and packages installed in your machine:
 
-* Python
-* Python Pandas package
-* Bedtools
-* Python PyBedtools package
-* R
-* R gProfileR package
+* **Python** (version 2.7.5)
+* Python **Pandas** package
+* **Bedtools** (version v2.25.0)
+* Python **PyBedtools** package
+* **R** (version 3.3.2)
+* R **gProfileR** package
 
 You need to have root privileges, an internet connection, and at least 8 GB of free space on your hard disk.
 We here provide the instructions to install all the needed programs and dependencies on Linux CentOS, Linux Ubuntu, and Mac OS. BEST was originally developed on a Linux CentOS computer.
