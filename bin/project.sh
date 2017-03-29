@@ -4,7 +4,7 @@
 #$ -S /bin/bash
 #
 set -o nounset -o pipefail -o errexit
-set -o xtrace
+#set -o xtrace
 
 # dependencies:
 # Python pybedtools
@@ -14,6 +14,8 @@ set -o xtrace
 startTime=`date +%s`
 millisec_time_number=$(date +%s)
 
+printf "\n :: BEST - Biological Enrichment of Sequence Targets ::\n\n"
+
 # INPUT_FILE="ENCODE_myc.bed"
 INPUT_FILE=$1
 QUERY_AC=$2
@@ -21,9 +23,20 @@ TSS_EXT=$3
 # 16000
 
 if [ ! -f $INPUT_FILE ]; then
-    echo "(project.sh) File $INPUT_FILE not found!\n The program will stop"
+    printf "(project.sh) File $INPUT_FILE not found!\n The program will stop"
     exit 1
 fi
+
+if [ $QUERY_AC = "DEFAULT_EQ" ]; then 
+   QUERY_AC=24100
+fi
+if [ $TSS_EXT = "DEFAULT_ET" ]; then 
+   TSS_EXT=9400
+fi
+
+printf "\nThe query extension parameter is \n "$QUERY_AC"\n"
+printf "\nThe TSS extension parameter is \n "$TSS_EXT"\n\n"
+
 
 filename=$(basename "$INPUT_FILE")
 filename="${filename%.*}"
@@ -61,12 +74,12 @@ sort -V $INPUT_FILE | bedtools window -w $QUERY_AC -a stdin -b "${TEMP_DIR}/$HI_
 # comment the following line to save the transcripts
 rm "${TEMP_DIR}/principal_transcripts.bed" "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
 
-echo "the results have been generated in the "${RESULTS_DIR}/$OUTPUT_FILE" file"
+printf "\nBEST generated the resulting gene list in the following file: \n "${RESULTS_DIR}/$OUTPUT_FILE"\n\n"
 
 wc -l ${RESULTS_DIR}/$OUTPUT_FILE
 
 # uncomment the following 2 lines to save the transcripts
-# echo "the program will stop here"
+# printf "the program will stop here"
 # exit
 
 GPROFILER_OUTPUT_FILE=${RESULTS_DIR}/${INPUT_FILE_NEW}_${ANALYSIS_RESULTS}_rev
@@ -139,9 +152,9 @@ grep "GO:" -m 1 $MERGED_TEMP_GO_FILE3_SORTED2 >  ${GPROFILER_OUTPUT_FILE}"_sorte
 # result=$(grep "GO:" -m 1 $MERGED_TEMP_GO_FILE3_SORTED2 || true)
 # 
 # if [[ $result == true ]]; then
-#     echo "$result" > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
+#     printf "$result" > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
 #   else
-#     echo "${TAB}${TAB}${TAB}${TAB}" > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
+#     printf "${TAB}${TAB}${TAB}${TAB}" > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
 # fi
 
 sed "1 s/$/ ${TAB}${QUERY_AC} ${TAB}${TSS_EXT}/" ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
@@ -167,13 +180,13 @@ GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_rand"${millisec_time_number}
 
 grep "GO:" $MERGED_TEMP_GO_FILE3_SORTED2 > $GO_LIST_FILE
 
-printf $GO_LIST_FILE
+printf "\n BEST generated the output GO list into the following file: \n %s\n\n" $GO_LIST_FILE
 
 endTime=`date +%s`
 runtime=$((endTime-startTime))
 printf 'project.sh Total running time: %dhours,  %dminutes, %dseconds\n' $(($runtime/3600)) $(($runtime%3600/60)) $(($runtime%60))
 
-rm -r ../temp/*
+rm -r $TEMP_DIR
 
 # to retrieve a genome assembly (solution from https://www.biostars.org/p/98121/):
 # mysql --user=genome --host=genome-mysql.cse.ucsc.edu -A -e
