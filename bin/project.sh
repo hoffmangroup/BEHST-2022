@@ -34,8 +34,8 @@ if [ $TSS_EXT = "DEFAULT_ET" ]; then
    TSS_EXT=9400
 fi
 
-printf "\nThe query extension parameter is  "$QUERY_AC"\n"
-printf "\nThe TSS extension parameter is  "$TSS_EXT"\n\n"
+printf "\n The query extension parameter is  "$QUERY_AC"\n"
+printf "\n The TSS extension parameter is  "$TSS_EXT"\n\n"
 
 
 filename=$(basename "$INPUT_FILE")
