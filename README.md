@@ -158,11 +158,11 @@ To run best, move to the /BEST/bin/ folder and execute the project.sh bash file.
 
 On Linux CentOS and Mac:
 
-`sh project.sh ../data/pressto_LUNG_enhancers.bed 24100 9400`
+`sh project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET`
 
 On Linux Ubuntu:
 
-`bash project.sh ../data/pressto_LUNG_enhancers.bed 24100 9400`
+`bash project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET`
 
 
 ## License ##
