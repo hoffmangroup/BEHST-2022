@@ -1,6 +1,6 @@
-# BEST - Biological Enrichment of Sequence Targets #
+# BEHST - Biological Enrichment of Hidden Sequence Targets #
 
-BEST: an advanced tool for gene set enrichment analysis (GSEA) enhanced
+BEHST: an advanced tool for gene set enrichment analysis (GSEA) enhanced
 through integration of chromatin long-range interactions
 
 ## Summary ##
@@ -8,7 +8,7 @@ through integration of chromatin long-range interactions
 
 
 ## Installation ##
-To run BEST, you need to have the following programs and packages installed in your machine:
+To run BEHST, you need to have the following programs and packages installed in your machine:
 
 * **Python** (version 2.7.5)
 * Python **Pandas** package
@@ -18,10 +18,10 @@ To run BEST, you need to have the following programs and packages installed in y
 * R **gProfileR** package
 
 You need to have root privileges, an internet connection, and at least 8 GB of free space on your hard disk.
-We here provide the instructions to install all the needed programs and dependencies on Linux CentOS, Linux Ubuntu, and Mac OS. BEST was originally developed on a Linux CentOS computer.
+We here provide the instructions to install all the needed programs and dependencies on Linux CentOS, Linux Ubuntu, and Mac OS. BEHST was originally developed on a Linux CentOS computer.
  
 #### Instructions for Linux CentOS ####
-Here are the instructions to install all the programs and libraries needed by BEST on a Linux CentOS computer, from a shell terminal. We tested these instructions on a Dell Latitude 3540 laptop running Linux CentOS 7.2.1511 operating system, in February 2017. If you are using another operating system version, some instructions might be slightly different.
+Here are the instructions to install all the programs and libraries needed by BEHST on a Linux CentOS computer, from a shell terminal. We tested these instructions on a Dell Latitude 3540 laptop running Linux CentOS 7.2.1511 operating system, in February 2017. If you are using another operating system version, some instructions might be slightly different.
 
 (Optional) First of all, update your system:
 
@@ -60,7 +60,7 @@ Install R and its packages RCurl and gProfileR:
 `sudo Rscript -e 'install.packages(c("RCurl","gProfileR"), repos="https://cran.rstudio.com")' `
 
 #### Instructions for Linux Ubuntu ####
-Here are the instructions to install all the programs and libraries needed by BEST on a Linux Ubuntu computer, from a shell terminal. We tested these instructions on a Dell Latitude 3540 laptop running Linux Ubuntu 16.10 operating system, in February 2017. If you are using another operating system version, some instructions might be slightly different.
+Here are the instructions to install all the programs and libraries needed by BEHST on a Linux Ubuntu computer, from a shell terminal. We tested these instructions on a Dell Latitude 3540 laptop running Linux Ubuntu 16.10 operating system, in February 2017. If you are using another operating system version, some instructions might be slightly different.
 
 
 First of all, update your system:
@@ -102,7 +102,7 @@ Install R and its packages RCurl and gProfileR:
 `sudo Rscript -e 'install.packages(c("RCurl", "gProfileR"), repos="https://cran.rstudio.com")' `
 
 #### Instructions for Mac OS ####
-Here are the instructions to install all the programs and libraries needed by BEST on a Mac computer, from a shell terminal. We tested these instructions on an Apple computer running a Mac OS macOS 10.12.2 Sierra operating system, in March 2017. If you are using another operating system version, some instructions might be slightly different.
+Here are the instructions to install all the programs and libraries needed by BEHST on a Mac computer, from a shell terminal. We tested these instructions on an Apple computer running a Mac OS macOS 10.12.2 Sierra operating system, in March 2017. If you are using another operating system version, some instructions might be slightly different.
 
 First of all, update:
 
@@ -143,14 +143,14 @@ Since the sed command has a different meaning from Linux to Mac, we have to repl
 
 `brew install gnu-sed`
 
-`cd /BEST/bin/`
+`cd /BEHST/bin/`
 
 `gsed -i.bak 's/sed/gsed/g' project.sh`
 
 ## Execution instructions ##
-To run best, move to the /BEST/bin/ folder and execute the project.sh bash file. For example, to run BEST with the PrESSTo lung file as input and the input optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400
+To run best, move to the /BEHST/bin/ folder and execute the project.sh bash file. For example, to run BEHST with the PrESSTo lung file as input and the input optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400
 
-`cd /BEST/bin/`
+`cd /BEHST/bin/`
 
 `mkdir ../results/`
 
@@ -181,7 +181,7 @@ The files of the PrESSTo dataset `\data\*pressto*` are publically available on t
 
 ## Contacts ##
 
-BEST was developed by Davide Chicco, Haixin Sarah Bi, and Michael M. Hoffman at the [Hoffman Lab](http://www.hoffmanlab.org) of the [Princess Margaret Cancer Centre](http://www.uhn.ca/PrincessMargaret/Research/) (Toronto, Ontario, Canada).
+BEHST was developed by Davide Chicco, Haixin Sarah Bi, and Michael M. Hoffman at the [Hoffman Lab](http://www.hoffmanlab.org) of the [Princess Margaret Cancer Centre](http://www.uhn.ca/PrincessMargaret/Research/) (Toronto, Ontario, Canada).
 
 For code questions, write to Davide Chicco: davide.chicco(AT)davidechicco.it
 
