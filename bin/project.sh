@@ -14,7 +14,7 @@ set -o nounset -o pipefail -o errexit
 startTime=`date +%s`
 millisec_time_number=$(date +%s)
 
-printf "\n :: BEST - Biological Enrichment of Sequence Targets ::\n\n"
+printf "\n :: BEHST - Biological Enrichment of Hidden Sequence Targets ::\n\n"
 
 # INPUT_FILE="ENCODE_myc.bed"
 INPUT_FILE=$1
@@ -74,7 +74,7 @@ sort -V $INPUT_FILE | bedtools window -w $QUERY_AC -a stdin -b "${TEMP_DIR}/$HI_
 # comment the following line to save the transcripts
 rm "${TEMP_DIR}/principal_transcripts.bed" "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
 
-printf "\nBEST generated the resulting gene list in the following file: \n "${RESULTS_DIR}/$OUTPUT_FILE"\n\n"
+printf "\nBEHST generated the resulting gene list in the following file: \n "${RESULTS_DIR}/$OUTPUT_FILE"\n\n"
 
 wc -l ${RESULTS_DIR}/$OUTPUT_FILE
 
@@ -180,7 +180,7 @@ GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_rand"${millisec_time_number}
 
 grep "GO:" $MERGED_TEMP_GO_FILE3_SORTED2 > $GO_LIST_FILE
 
-printf "\n BEST generated the output GO list into the following file: \n %s\n\n" $GO_LIST_FILE
+printf "\n BEHST generated the output GO list into the following file: \n %s\n\n" $GO_LIST_FILE
 
 endTime=`date +%s`
 runtime=$((endTime-startTime))
