@@ -3,10 +3,6 @@
 BEHST: an advanced tool for gene set enrichment analysis (GSEA) enhanced
 through integration of chromatin long-range interactions
 
-## Summary ##
-(X) To be written. [Markdown instuctions](https://bitbucket.org/tutorials/markdowndemo)
-
-
 ## Installation ##
 To run BEHST, you need to have the following programs and packages installed in your machine:
 
