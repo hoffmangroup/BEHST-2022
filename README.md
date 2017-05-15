@@ -17,7 +17,7 @@ To run BEHST, you need to have the following programs and packages installed in 
 * **R** (version 3.3.2)
 * R **gProfileR** package
 
-If you already have all of them installed on your computer, you can download and run BEHST (without root privileges), following the ## **Execution instructions** below.
+If you already have all of them installed on your computer, you can download and run BEHST (without root privileges), following the **Execution instructions** below.
 
 On the contrary, in case you needed to install some of these programs, you need to have root privileges, an internet connection, and at least 8 GB of free space on your hard disk.
 
