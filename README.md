@@ -17,7 +17,10 @@ To run BEHST, you need to have the following programs and packages installed in 
 * **R** (version 3.3.2)
 * R **gProfileR** package
 
-You need to have root privileges, an internet connection, and at least 8 GB of free space on your hard disk.
+If you already have all of them installed on your computer, you can download and run BEHST (without root privileges on your computer).
+
+On the contrary, in case you needed to install some of these programs, you need to have root privileges, an internet connection, and at least 8 GB of free space on your hard disk.
+
 We here provide the instructions to install all the needed programs and dependencies on Linux CentOS, Linux Ubuntu, and Mac OS. BEHST was originally developed on a Linux CentOS computer.
  
 #### Instructions for Linux CentOS ####
