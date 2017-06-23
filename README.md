@@ -152,11 +152,12 @@ Since the sed command has a different meaning from Linux to Mac, we have to repl
 ## Execution instructions ##
 To run best, move to the /BEHST/bin/ folder and execute the project.sh bash file. For example, to run BEHST with the PrESSTo lung file as input and the input optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400
 
-`cd /BEHST/bin/`
+`cd /behst/`
 
-`mkdir ../results/`
+Download data:
 
-`mkdir ../temp/`
+`./download_behst_data.sh`
+
 
 Then type:
 

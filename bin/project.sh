@@ -50,8 +50,8 @@ mkdir $TEMP_DIR
 
 GENE_ANNOTATION_FILE="../data/gencode.v19.annotation.gtf_withproteinids"
 TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.txt"
-#HI_C_FILE="../../../_project/data/2015-01-15_Miriam_data/original_GEO_data_files/GSE63525_GM12878_primary_HiCCUPS_looplist_NEW.txt"
 HI_C_FILE="../data/hic_allCellTypes"
+
 HI_C_FILTERED_TEMP_FILE="hi_c_filtered.txt"
 OUTPUT_FILE=${INPUT_FILE_NEW}"_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}"_gene_list.txt"
 
