@@ -1,4 +1,4 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python2.7 
 
 """
 This script takes a HiCCUPS_looplist.txt file as input, deletes columns apart from chromosome #'s and

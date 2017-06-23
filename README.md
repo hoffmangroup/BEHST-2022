@@ -160,11 +160,11 @@ To run best, move to the /BEHST/bin/ folder and execute the project.sh bash file
 
 On Linux CentOS and Mac:
 
-`sh project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET`
+`./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET`
 
 On Linux Ubuntu:
 
-`bash project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET`
+`./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET`
 
 
 ## License ##
