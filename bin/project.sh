@@ -6,9 +6,7 @@
 set -o nounset -o pipefail -o errexit
 # set -o xtrace
 
-# dependencies:
-# Python pybedtools
-# R gProfileR
+# ./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET DEFAULT_GENE_ANNOTATION_FILE DEFAULT_TRANSCRIPT_ANNOTATION_FILE DEFAULT_LONG_RANGE_INTERACTION_FILE
 
 
 startTime=`date +%s`
@@ -16,11 +14,33 @@ millisec_time_number=$(date +%s)
 
 printf "\n :: BEHST - Biological Enrichment of Hidden Sequence Targets ::\n\n"
 
-# INPUT_FILE="ENCODE_myc.bed"
+
+if [ $1 = "--test" ]; then 
+
+	if [ ! -f "hiC_parser.py" ]; then
+	    echo "Executable file hiC_parser.py not found! The program will exit 1"
+	    exit 1
+	fi
+	if [ ! -f "gProfilerCall.r" ]; then
+	    echo "Executable file gProfilerCall.r not found! The program will exit 1"
+	    exit 1
+	fi
+	if [ ! -f "gene_annotation_parser.py" ]; then
+	    echo "Executable file gene_annotation_parser.py not found! The program will exit 1"
+	    exit 1
+	fi
+	echo "Executable files found, test passed."
+	exit 0
+fi
+
+
+
 INPUT_FILE=$1
 QUERY_AC=$2
 TSS_EXT=$3
-# 16000
+GENE_ANNOTATION_FILE=$4
+TRANSCRIPT_ANNOTATION_FILE=$5
+HI_C_FILE=$6
 
 if [ ! -f $INPUT_FILE ]; then
     printf "(project.sh) File $INPUT_FILE not found!\n The program will stop"
@@ -30,12 +50,30 @@ fi
 if [ $QUERY_AC = "DEFAULT_EQ" ]; then 
    QUERY_AC=24100
 fi
+
 if [ $TSS_EXT = "DEFAULT_ET" ]; then 
    TSS_EXT=9400
 fi
 
 printf "\n The query extension parameter is  "$QUERY_AC "\n"
 printf "\n The TSS extension parameter is  "$TSS_EXT "\n\n"
+
+
+if [ $GENE_ANNOTATION_FILE = "DEFAULT_GENE_ANNOTATION_FILE" ]; then 
+   GENE_ANNOTATION_FILE="../data/gencode.v19.annotation.gtf_withproteinids"
+fi
+
+if [ $TRANSCRIPT_ANNOTATION_FILE = "DEFAULT_TRANSCRIPT_ANNOTATION_FILE" ]; then 
+   TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.txt"
+fi
+
+if [ $HI_C_FILE = "DEFAULT_LONG_RANGE_INTERACTION_FILE" ]; then 
+   HI_C_FILE="../data/hic_allCellTypes"
+fi
+
+printf "\n The gene annotation file is  "$GENE_ANNOTATION_FILE "\n"
+printf "\n The transcript annotation file is  "$TRANSCRIPT_ANNOTATION_FILE "\n"
+printf "\n The long range interaction file is  "$HI_C_FILE "\n\n"
 
 
 filename=$(basename "$INPUT_FILE")
@@ -48,9 +86,9 @@ RESULTS_DIR="../results"
 TEMP_DIR="../temp/rand_"${millisec_time_number}
 mkdir $TEMP_DIR
 
-GENE_ANNOTATION_FILE="../data/gencode.v19.annotation.gtf_withproteinids"
-TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.txt"
-HI_C_FILE="../data/hic_allCellTypes"
+# GENE_ANNOTATION_FILE="../data/gencode.v19.annotation.gtf_withproteinids"
+# TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.txt"
+# HI_C_FILE="../data/hic_allCellTypes"
 
 HI_C_FILTERED_TEMP_FILE="hi_c_filtered.txt"
 OUTPUT_FILE=${INPUT_FILE_NEW}"_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}"_gene_list.txt"

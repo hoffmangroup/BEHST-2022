@@ -150,18 +150,18 @@ Since the sed command has a different meaning from Linux to Mac, we have to repl
 `gsed -i.bak 's/sed/gsed/g' project.sh`
 
 ## Execution instructions ##
-To run best, move to the /BEHST/bin/ folder and execute the project.sh bash file. For example, to run BEHST with the PrESSTo lung file as input and the input optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400
+To run best, move to the /BEHST/bin/ folder and execute the project.sh bash file. For example, to apply BEHST to the FANTOM5 lung enhancers with the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations, the default APPRIS transcripts, and the default Hi-C long range interactions, run the following commands.
 
 `cd /behst/`
 
-Download data:
+Download data in the `/data/` folder:
 
 `./download_behst_data.sh`
 
 
 Then type:
 
-`./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET`
+`./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET DEFAULT_GENE_ANNOTATION_FILE DEFAULT_TRANSCRIPT_ANNOTATION_FILE DEFAULT_LONG_RANGE_INTERACTION_FILE`
 
 
 ## License ##
