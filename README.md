@@ -163,6 +163,8 @@ Then type:
 
 `./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET DEFAULT_GENE_ANNOTATION_FILE DEFAULT_TRANSCRIPT_ANNOTATION_FILE DEFAULT_LONG_RANGE_INTERACTION_FILE`
 
+The user can decide to use an alternative gene annotation file, an alternative transcript file, and an alternative chromatin loopings file, by specifying them as arguments to the `project.sh` script.
+
 
 ## License ##
 All the code is licensed under the [GNU General Public License, version 2 (GPLv2)](http://www.gnu.org/licenses/gpl-2.0-standalone.html).
