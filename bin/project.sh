@@ -3,7 +3,7 @@
 #$ -cwd
 #$ -S /bin/bash
 #
-set -o pipefail -o errexit
+set -o nounset -o pipefail -o errexit
 # set -o xtrace
 
 # ./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET DEFAULT_GENE_ANNOTATION_FILE DEFAULT_TRANSCRIPT_ANNOTATION_FILE DEFAULT_LONG_RANGE_INTERACTION_FILE
@@ -33,7 +33,6 @@ if [ $1 = "--test" ]; then
 	exit 0
 fi
 
-set -o nounset 
 
 INPUT_FILE=$1
 QUERY_AC=$2
