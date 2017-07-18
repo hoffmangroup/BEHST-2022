@@ -17,25 +17,9 @@ mkdir data
 cd data
 
 wget http://behst.hoffmanlab.org/data/appris_data_principal.bed
-wget http://behst.hoffmanlab.org/data/ENCFF001VED.bed
-wget http://behst.hoffmanlab.org/data/ENCFF001VED_sorted.bed
-wget http://behst.hoffmanlab.org/data/ENCODE_myc.bed
-wget http://behst.hoffmanlab.org/data/ENCODE_myc_first9rows.bed
-wget http://behst.hoffmanlab.org/data/file2.bed
-wget http://behst.hoffmanlab.org/data/file3.bed
-wget http://behst.hoffmanlab.org/data/file.bed
-wget http://behst.hoffmanlab.org/data/FORMER_ENCFF001VED_SHUFFLE.bed
-wget http://behst.hoffmanlab.org/data/FORMER_KLF2_input_to_tool_step_9_SHUFFLE.bed
-wget http://behst.hoffmanlab.org/data/FORMER_vista_example4_Human_brain_sorted_SHUFFLE.bed
-wget http://behst.hoffmanlab.org/data/FORMER_vista_example4_Human_sorted_SHUFFLE.bed
-wget http://behst.hoffmanlab.org/data/FORMER_vista_example4_Human_sorted_SHUFFLE_sorted.bed
 wget http://behst.hoffmanlab.org/data/gencode.v19.annotation_withproteinids.gtf
-wget http://behst.hoffmanlab.org/data/go_data_example
-wget http://behst.hoffmanlab.org/data/gpdw_gene_list
 wget http://behst.hoffmanlab.org/data/hic_8celltypes.hiccups
-wget http://behst.hoffmanlab.org/data/KLF2_input_to_tool_step_9.bed
-wget http://behst.hoffmanlab.org/data/KLF2_input_to_tool_step_9_SHUFFLE2.bed
-wget http://behst.hoffmanlab.org/data/KLF2_input_to_tool_step_9_sorted_SHUFFLE2.bed
+
 wget http://behst.hoffmanlab.org/data/my.genome
 wget http://behst.hoffmanlab.org/data/pressto_BLOOD_enhancers.bed
 wget http://behst.hoffmanlab.org/data/pressto_BLOOD_enhancers_SHUFFLED.bed
@@ -63,11 +47,6 @@ wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_Human_sorted.bed
 wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_LIMB_sorted.bed
 wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_MIDBRAIN_sorted.bed
 wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_NOSE_sorted.bed
-wget http://behst.hoffmanlab.org/data/tss_list_1486400665.65.bed
-wget http://behst.hoffmanlab.org/data/vista_example2_Human_ORIGINAL
-wget http://behst.hoffmanlab.org/data/vista_example2_Mouse
-wget http://behst.hoffmanlab.org/data/vista_example3_Human
-wget http://behst.hoffmanlab.org/data/vista_example_temp
 wget http://behst.hoffmanlab.org/data/vista_EYE_SHUFFLED.bed
 wget http://behst.hoffmanlab.org/data/vista_EYE_sorted.bed
 wget http://behst.hoffmanlab.org/data/vista_EYE_TEMP
