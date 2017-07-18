@@ -59,15 +59,15 @@ printf "\n The TSS extension parameter is  "$TSS_EXT "\n\n"
 
 
 if [ $GENE_ANNOTATION_FILE = "DEFAULT_GENE_ANNOTATION_FILE" ]; then 
-   GENE_ANNOTATION_FILE="../data/gencode.v19.annotation.gtf_withproteinids"
+   GENE_ANNOTATION_FILE="../data/gencode.v19.annotation_withproteinids.gtf"
 fi
 
 if [ $TRANSCRIPT_ANNOTATION_FILE = "DEFAULT_TRANSCRIPT_ANNOTATION_FILE" ]; then 
-   TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.txt"
+   TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.bed"
 fi
 
 if [ $HI_C_FILE = "DEFAULT_LONG_RANGE_INTERACTION_FILE" ]; then 
-   HI_C_FILE="../data/hic_allCellTypes"
+   HI_C_FILE="../data/hic_8celltypes.hiccups"
 fi
 
 printf "\n The gene annotation file is  "$GENE_ANNOTATION_FILE "\n"
@@ -85,9 +85,9 @@ RESULTS_DIR="../results"
 TEMP_DIR="../temp/rand_"${millisec_time_number}
 mkdir $TEMP_DIR
 
-# GENE_ANNOTATION_FILE="../data/gencode.v19.annotation.gtf_withproteinids"
-# TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.txt"
-# HI_C_FILE="../data/hic_allCellTypes"
+# GENE_ANNOTATION_FILE="../data/gencode.v19.annotation_withproteinids.gtf"
+# TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.bed"
+# HI_C_FILE="../data/hic_8celltypes.hiccups"
 
 HI_C_FILTERED_TEMP_FILE="hi_c_filtered.txt"
 OUTPUT_FILE=${INPUT_FILE_NEW}"_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}"_gene_list.txt"
