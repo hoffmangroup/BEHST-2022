@@ -145,14 +145,14 @@ Since the sed command has a different meaning from Linux to Mac, we have to repl
 
 `brew install gnu-sed`
 
-`cd /BEHST/bin/`
+`cd /behst/bin/`
 
 `gsed -i.bak 's/sed/gsed/g' project.sh`
 
 ## Execution instructions ##
-To run best, move to the /BEHST/bin/ folder and execute the project.sh bash file. For example, to apply BEHST to the FANTOM5 lung enhancers with the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations, the default APPRIS transcripts, and the default Hi-C long range interactions, run the following commands.
+To run best, move to the /behst/bin/ folder and execute the project.sh bash file. For example, to apply BEHST to the FANTOM5 lung enhancers with the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations, the default APPRIS transcripts, and the default Hi-C long range interactions, run the following commands.
 
-`cd /behst/`
+`cd /behst/bin/`
 
 Download data in the `/data/` folder:
 
