@@ -17,15 +17,18 @@ HI_C_FILE="default_long_range_interaction_file"
 
 
 parser = argparse.ArgumentParser()
+
 parser.add_argument("INPUT_BED_FILE", help="input BED file of genomic regions")
 parser.add_argument("-T", "--target-extension", help="target extension basepair integer (default is 9400)\n", action="store")
 parser.add_argument("-Q", "--query-extension", help="query extension basepair integer (default is 24100)\n", action="store")
 parser.add_argument("-g", "--gene-annotation-file", help="gene annotation file path (default is GENCODE annotation v.19)\n", action="store")
 parser.add_argument("-t", "--transcript-file", help="principal transcript file path (default is APPRIS transcript 2017_01.v20 file)\n\n", action="store")
 parser.add_argument("-i", "--interaction-file", help="chromatin interactions file path (default is the Hi-C HiCCUPS from Lieberman-Aiden 2014)\n\n", action="store")
+parser.add_argument("-v", "--version", help="current BEHST version\n", action="version", version='%(prog)s (version 0.6)')
 
 args = parser.parse_args()
 print args
+
 
 INPUT_FILE = args.INPUT_BED_FILE
 
@@ -43,6 +46,8 @@ if args.transcript_file:
 
 if args.interaction_file:
   HI_C_FILE = args.interaction_file
+  
+
 
 
 #-T | --target-extension ) TSS_EXT="$2"; shift; shift ;;
