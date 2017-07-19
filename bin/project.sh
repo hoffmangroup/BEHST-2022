@@ -46,11 +46,11 @@ if [ ! -f $INPUT_FILE ]; then
     exit 1
 fi
 
-if [ $QUERY_AC = "DEFAULT_EQ" ]; then 
+if [ $QUERY_AC = "default_eq" ]; then 
    QUERY_AC=24100
 fi
 
-if [ $TSS_EXT = "DEFAULT_ET" ]; then 
+if [ $TSS_EXT = "default_et" ]; then 
    TSS_EXT=9400
 fi
 
@@ -58,15 +58,15 @@ printf "\n The query extension parameter is  "$QUERY_AC "\n"
 printf "\n The TSS extension parameter is  "$TSS_EXT "\n\n"
 
 
-if [ $GENE_ANNOTATION_FILE = "DEFAULT_GENE_ANNOTATION_FILE" ]; then 
+if [ $GENE_ANNOTATION_FILE = "default_gene_annotation_file" ]; then 
    GENE_ANNOTATION_FILE="../data/gencode.v19.annotation_withproteinids.gtf"
 fi
 
-if [ $TRANSCRIPT_ANNOTATION_FILE = "DEFAULT_TRANSCRIPT_ANNOTATION_FILE" ]; then 
+if [ $TRANSCRIPT_ANNOTATION_FILE = "default_transcript_annotation_file" ]; then 
    TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.bed"
 fi
 
-if [ $HI_C_FILE = "DEFAULT_LONG_RANGE_INTERACTION_FILE" ]; then 
+if [ $HI_C_FILE = "default_long_range_interaction_file" ]; then 
    HI_C_FILE="../data/hic_8celltypes.hiccups"
 fi
 
