@@ -150,20 +150,27 @@ Since the sed command has a different meaning from Linux to Mac, we have to repl
 `gsed -i.bak 's/sed/gsed/g' project.sh`
 
 ## Execution instructions ##
-To run best, move to the /behst/bin/ folder and execute the project.sh bash file. For example, to apply BEHST to the FANTOM5 lung enhancers with the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations, the default APPRIS transcripts, and the default Hi-C long range interactions, run the following commands.
+To run best, move to the /behst/bin/ folder first: 
 
 `cd /behst/bin/`
 
-Download data in the `/data/` folder:
+Then you have to download the default data files for BEHST. They are genomic regions files containing enhancers of FANTOM5 and VISTA which can be the input of your test, and the files of the data you need to run BEHST: a GENCODE annotation file, a principal transcript APPRIS file, and a Hi-C long-range interaction file.
 
-`./download_behst_data.sh`
+To download the data files, you have to run the `./download_behst_data.sh` by providing the full path of there folder where you want to download the data files. For example:
 
+`./download_behst_data.sh ~/myBEHSTdataFolder`
 
-Then type:
+This command downloads all the default data files of BEHST into the `~/myBEHSTdataFolder/` folder in your computer.
+After having downloaded all the default data files, you can use BEHST by calling the `./behst.py` script providing two mandatory parameters (an input .bed file of genomic regions on which to apply BEHST, and the data folder full path), and multiple optional parameters.
+With the optional parameters, you can specifify alternative values for the query extension (`-Q`) and the target extension (`-T`), and alternative files for the gene annotations (`g`), for the principal transcript file (`-t`), and for the long-range interaction file (`-i`).
 
-`./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET DEFAULT_GENE_ANNOTATION_FILE DEFAULT_TRANSCRIPT_ANNOTATION_FILE DEFAULT_LONG_RANGE_INTERACTION_FILE`
+For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations (previously downloaded in the `~/myBEHSTdataFolder/` folder), the default APPRIS transcripts (previously downloaded in the `~/myBEHSTdataFolder/` folder), and the default Hi-C long range interactions (previously downloaded in the `~/myBEHSTdataFolder/` folder), run the following commands:
 
-The user can decide to use an alternative gene annotation file, an alternative transcript file, and an alternative chromatin loopings file, by specifying them as arguments to the `project.sh` script.
+`./behst.py ~/myBEHSTdataFolder/pressto_LUNG_enhancers.bed ~/myBEHSTdataFolder`
+
+The user can decide to use an alternative gene annotation file, an alternative transcript file, and an alternative chromatin loopings file, by specifying them as arguments to the `project.sh` script. The user can read the help by typing:
+
+`./behst --help`
 
 
 ## License ##
