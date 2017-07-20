@@ -15,15 +15,16 @@ TRANSCRIPT_ANNOTATION_FILE="default_transcript_annotation_file"
 HI_C_FILE="default_long_range_interaction_file"
 
 
+citation = "Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. \"BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions\". In preparation."
+parser = argparse.ArgumentParser(epilog=citation)
 
-parser = argparse.ArgumentParser()
 
 parser.add_argument("INPUT_BED_FILE", help="input BED file of genomic regions")
-parser.add_argument("-T", "--target-extension", help="target extension basepair integer (default is 9400)\n", action="store")
-parser.add_argument("-Q", "--query-extension", help="query extension basepair integer (default is 24100)\n", action="store")
-parser.add_argument("-g", "--gene-annotation-file", help="gene annotation file path (default is GENCODE annotation v.19)\n", action="store")
-parser.add_argument("-t", "--transcript-file", help="principal transcript file path (default is APPRIS transcript 2017_01.v20 file)\n\n", action="store")
-parser.add_argument("-i", "--interaction-file", help="chromatin interactions file path (default is the Hi-C HiCCUPS from Lieberman-Aiden 2014)\n\n", action="store")
+parser.add_argument("-T", "--target-extension", help="target extension basepair integer. Default is 9400.\n", action="store")
+parser.add_argument("-Q", "--query-extension", help="query extension basepair integer. Default is 24100.\n", action="store")
+parser.add_argument("-g", "--gene-annotation-file", help="path of the gene annotation file (.gtf format). Default is the GENCODE annotation v.19 file (../data/gencode.v19.annotation_withproteinids.gtf).\n", action="store")
+parser.add_argument("-t", "--transcript-file", help="path to the principal transcript file (.bed format). Default is APPRIS transcript 2017_01.v20 file (../data/appris_data_principal.bed)\n\n", action="store")
+parser.add_argument("-i", "--interaction-file", help="path to the chromatin interactions file (.hiccups format). Default is the Hi-C HiCCUPS from Lieberman-Aiden 2014 (../data/hic_8celltypes.hiccups).\n\n", action="store")
 parser.add_argument("-v", "--version", help="current BEHST version\n", action="version", version='%(prog)s (version 0.6)')
 
 args = parser.parse_args()
@@ -47,14 +48,6 @@ if args.transcript_file:
 if args.interaction_file:
   HI_C_FILE = args.interaction_file
   
-
-
-
-#-T | --target-extension ) TSS_EXT="$2"; shift; shift ;;
-#-Q | --query-extension ) QUERY_AC="$2"; shift; shift ;;
-#-g | --gene-annotation-file )GENE_ANNOTATION_FILE="$2"; shift; shift ;;
-#-t | --transcript-file )TRANSCRIPT_ANNOTATION_FILE="$2"; shift; shift ;;
-#-i | --interaction-file )HI_C_FILE="$2"; shift; shift ;;
 
 print "INPUT_FILE: ",INPUT_FILE
 print "TSS_EXT: ",TSS_EXT
