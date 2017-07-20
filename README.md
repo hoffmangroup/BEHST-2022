@@ -170,6 +170,10 @@ For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized
 
 The user can decide to use an alternative gene annotation file, an alternative transcript file, and an alternative chromatin loopings file, by specifying them as arguments to the `project.sh` script. The user can read the help by typing:
 
+`./behst.py --help`
+
+
+
     usage: behst.py [-h] [-T TARGET_EXTENSION] [-Q QUERY_EXTENSION]
                          [-g GENE_ANNOTATION_FILE] [-t TRANSCRIPT_FILE]
                          [-i INTERACTION_FILE] [-v]
