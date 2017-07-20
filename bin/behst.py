@@ -8,6 +8,7 @@
 import argparse
 
 INPUT_FILE="unknown"
+BEHST_DATA_FOLDER="unknown"
 TSS_EXT="default_et"
 QUERY_AC="default_eq"
 GENE_ANNOTATION_FILE="default_gene_annotation_file"
@@ -20,11 +21,12 @@ parser = argparse.ArgumentParser(epilog=citation)
 
 
 parser.add_argument("INPUT_BED_FILE", help="input BED file of genomic regions")
+parser.add_argument("BEHST_DATA_FILES_FOLDER", help="path to the folder where you downloaded the default BEHST data files with ./download_behst_data.sh")
 parser.add_argument("-T", "--target-extension", help="target extension basepair integer. Default is 9400.\n", action="store")
 parser.add_argument("-Q", "--query-extension", help="query extension basepair integer. Default is 24100.\n", action="store")
-parser.add_argument("-g", "--gene-annotation-file", help="path of the gene annotation file (.gtf format). Default is the GENCODE annotation v.19 file (../data/gencode.v19.annotation_withproteinids.gtf).\n", action="store")
-parser.add_argument("-t", "--transcript-file", help="path to the principal transcript file (.bed format). Default is APPRIS transcript 2017_01.v20 file (../data/appris_data_principal.bed)\n\n", action="store")
-parser.add_argument("-i", "--interaction-file", help="path to the chromatin interactions file (.hiccups format). Default is the Hi-C HiCCUPS from Lieberman-Aiden 2014 (../data/hic_8celltypes.hiccups).\n\n", action="store")
+parser.add_argument("-g", "--gene-annotation-file", help="path of the gene annotation file (.gtf format). Default is the GENCODE annotation v.19 file (gencode.v19.annotation_withproteinids.gtf).\n", action="store")
+parser.add_argument("-t", "--transcript-file", help="path to the principal transcript file (.bed format). Default is APPRIS transcript 2017_01.v20 file (appris_data_principal.bed)\n\n", action="store")
+parser.add_argument("-i", "--interaction-file", help="path to the chromatin interactions file (.hiccups format). Default is the Hi-C HiCCUPS from Lieberman-Aiden 2014 (hic_8celltypes.hiccups).\n\n", action="store")
 parser.add_argument("-v", "--version", help="current BEHST version\n", action="version", version='%(prog)s (version 0.6)')
 
 args = parser.parse_args()
@@ -32,6 +34,7 @@ print args
 
 
 INPUT_FILE = args.INPUT_BED_FILE
+BEHST_DATA_FOLDER = args.BEHST_DATA_FILES_FOLDER
 
 if args.target_extension:
   TSS_EXT = args.target_extension
@@ -50,6 +53,7 @@ if args.interaction_file:
   
 
 print "INPUT_FILE: ",INPUT_FILE
+print "BEHST_DATA_FOLDER: ",BEHST_DATA_FOLDER
 print "TSS_EXT: ",TSS_EXT
 print "QUERY_AC: ",QUERY_AC
 print "GENE_ANNOTATION_FILE: ",GENE_ANNOTATION_FILE
@@ -60,4 +64,4 @@ print "HI_C_FILE: ",HI_C_FILE
 
 import subprocess
 
-subprocess.check_call(['./project.sh', INPUT_FILE, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])
+subprocess.check_call(['./project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])

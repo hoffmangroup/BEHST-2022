@@ -6,15 +6,28 @@
 set -o nounset -o pipefail -o errexit
 # set -o xtrace
 
-# Suppose you're in the /behst/ folder. 
-cd ..
+cd ~
 
-# Now let's download the /data/ folder
-# wget -r -l1 --no-parent -nH --cut-dirs=2 -e robots=off http://behst.hoffmanlab.org/data/
+# # Suppose you're in the /behst/ folder. 
+# cd ..
+# 
+# # Now let's download the /data/ folder
+# # wget -r -l1 --no-parent -nH --cut-dirs=2 -e robots=off http://behst.hoffmanlab.org/data/
+# 
+# # The B plan
+# mkdir data
+# cd data
 
-# The B plan
-mkdir data
-cd data
+if [[ -z "$1" ]]; then
+    echo
+    echo "Downloads BEHST default data to <outdir>"
+    echo "Usage: $0 <outdir>"
+    echo
+    exit 1
+fi
+OUTDIR=$1
+mkdir -p $OUTDIR
+cd $OUTDIR
 
 wget http://behst.hoffmanlab.org/data/appris_data_principal.bed
 wget http://behst.hoffmanlab.org/data/gencode.v19.annotation_withproteinids.gtf
@@ -31,8 +44,6 @@ wget http://behst.hoffmanlab.org/data/pressto_PANCREAS_enhancers.bed
 wget http://behst.hoffmanlab.org/data/pressto_PANCREAS_enhancers_SHUFFLED.bed
 wget http://behst.hoffmanlab.org/data/pressto_STOMACH_enhancers.bed
 wget http://behst.hoffmanlab.org/data/pressto_STOMACH_enhancers_SHUFFLED.bed
-wget http://behst.hoffmanlab.org/data/random_example_9rows2.bed
-wget http://behst.hoffmanlab.org/data/random_example_9rows.bed
 wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_pressto_BLOOD_enhancers.bed
 wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_pressto_LIVER_enhancers.bed
 wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_pressto_LUNG_enhancers.bed

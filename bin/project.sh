@@ -35,11 +35,12 @@ fi
 
 
 INPUT_FILE=$1
-QUERY_AC=$2
-TSS_EXT=$3
-GENE_ANNOTATION_FILE=$4
-TRANSCRIPT_ANNOTATION_FILE=$5
-HI_C_FILE=$6
+BEHST_DATA_FOLDER=$2
+QUERY_AC=$3
+TSS_EXT=$4
+GENE_ANNOTATION_FILE=$5
+TRANSCRIPT_ANNOTATION_FILE=$6
+HI_C_FILE=$7
 
 if [ ! -f $INPUT_FILE ]; then
     printf "(project.sh) File $INPUT_FILE not found!\n The program will stop"
@@ -59,15 +60,15 @@ printf "\n The TSS extension parameter is  "$TSS_EXT "\n\n"
 
 
 if [ $GENE_ANNOTATION_FILE = "default_gene_annotation_file" ]; then 
-   GENE_ANNOTATION_FILE="../data/gencode.v19.annotation_withproteinids.gtf"
+   GENE_ANNOTATION_FILE=$BEHST_DATA_FOLDER"/gencode.v19.annotation_withproteinids.gtf"
 fi
 
 if [ $TRANSCRIPT_ANNOTATION_FILE = "default_transcript_annotation_file" ]; then 
-   TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.bed"
+   TRANSCRIPT_ANNOTATION_FILE=$BEHST_DATA_FOLDER"/appris_data_principal.bed"
 fi
 
 if [ $HI_C_FILE = "default_long_range_interaction_file" ]; then 
-   HI_C_FILE="../data/hic_8celltypes.hiccups"
+   HI_C_FILE=$BEHST_DATA_FOLDER"/hic_8celltypes.hiccups"
 fi
 
 printf "\n The gene annotation file is  "$GENE_ANNOTATION_FILE "\n"
