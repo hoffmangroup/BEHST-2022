@@ -161,7 +161,7 @@ To download the data files, you have to run the `./download_behst_data.sh` by pr
 `./download_behst_data.sh ~/myBEHSTdataFolder`
 
 This command downloads all the default data files of BEHST into the `~/myBEHSTdataFolder/` folder in your computer.
-After having downloaded all the default data files, you can use BEHST by calling the `./behst.py` script providing two mandatory parameters (an input .bed file of genomic regions on which to apply BEHST, and the data folder full path), and multiple optional parameters.
+After having downloaded all the default data files, you can use BEHST by calling the `./behst.py` script providing two mandatory parameters (an input .bed file of genomic regions on which to apply BEHST, and the default data folder full path), and multiple optional parameters.
 With the optional parameters, you can specifify alternative values for the query extension (`-Q`) and the target extension (`-T`), and alternative files for the gene annotations (`g`), for the principal transcript file (`-t`), and for the long-range interaction file (`-i`).
 
 For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations (previously downloaded in the `~/myBEHSTdataFolder/` folder), the default APPRIS transcripts (previously downloaded in the `~/myBEHSTdataFolder/` folder), and the default Hi-C long range interactions (previously downloaded in the `~/myBEHSTdataFolder/` folder), run the following commands:
@@ -171,6 +171,43 @@ For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized
 The user can decide to use an alternative gene annotation file, an alternative transcript file, and an alternative chromatin loopings file, by specifying them as arguments to the `project.sh` script. The user can read the help by typing:
 
 `./behst --help`
+
+`usage: behst.py [-h] [-T TARGET_EXTENSION] [-Q QUERY_EXTENSION]`
+                `[-g GENE_ANNOTATION_FILE] [-t TRANSCRIPT_FILE]`
+                `[-i INTERACTION_FILE] [-v]`
+                `INPUT_BED_FILE`
+                `BEHST_DATA_FILES_FOLDER`
+
+`positional arguments:`
+  `INPUT_BED_FILE        input BED file of genomic regions`
+  `BEHST_DATA_FILES_FOLDER`
+                        `path to the folder where you downloaded the default`
+                        `BEHST data files with ./download_behst_data.sh`
+
+`optional arguments:`
+  `-h, --help            show this help message and exit`
+  `-T TARGET_EXTENSION, --target-extension TARGET_EXTENSION`
+                        `target extension basepair integer. Default is 9400.`
+  `-Q QUERY_EXTENSION, --query-extension QUERY_EXTENSION`
+                        `query extension basepair integer. Default is 24100.`
+  `-g GENE_ANNOTATION_FILE, --gene-annotation-file GENE_ANNOTATION_FILE`
+                        `path of the gene annotation file (.gtf format).`
+                        `Default is the GENCODE annotation v.19 file`
+                        `(gencode.v19.annotation_withproteinids.gtf).`
+  `-t TRANSCRIPT_FILE, --transcript-file TRANSCRIPT_FILE`
+                        `path to the principal transcript file (.bed format).`
+                        `Default is APPRIS transcript 2017_01.v20 file`
+                        `(appris_data_principal.bed)`
+  `-i INTERACTION_FILE, --interaction-file INTERACTION_FILE`
+                        `path to the chromatin interactions file (.hiccups`
+                        `format). Default is the Hi-C HiCCUPS from Lieberman-`
+                        `Aiden 2014 (hic_8celltypes.hiccups).`
+  `-v, --version         current BEHST version`
+
+`Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. "BEHST: Genomic set`
+`enrichment analysis enhanced through integration of chromatin long-range`
+`interactions". In preparation.`
+
 
 
 ## License ##
