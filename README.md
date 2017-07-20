@@ -172,6 +172,8 @@ The user can decide to use an alternative gene annotation file, an alternative t
 
 `./behst.py --help`
 
+This command will print the following instructions:
+
 
 
     usage: behst.py [-h] [-T TARGET_EXTENSION] [-Q QUERY_EXTENSION]
