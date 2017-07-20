@@ -170,10 +170,10 @@ For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized
 
 The user can decide to use an alternative gene annotation file, an alternative transcript file, and an alternative chromatin loopings file, by specifying them as arguments to the `project.sh` script. The user can read the help by typing:
 
-usage: behst.py [-h] [-T TARGET_EXTENSION] [-Q QUERY_EXTENSION]
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-g GENE_ANNOTATION_FILE] [-t TRANSCRIPT_FILE]
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-i INTERACTION_FILE] [-v]
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INPUT_BED_FILE BEHST_DATA_FILES_FOLDER
+`usage: behst.py [-h] [-T TARGET_EXTENSION] [-Q QUERY_EXTENSION]`
+`                        [-g GENE_ANNOTATION_FILE] [-t TRANSCRIPT_FILE]`
+`                        [-i INTERACTION_FILE] [-v]`
+`                        INPUT_BED_FILE BEHST_DATA_FILES_FOLDER`
 
 > positional arguments:
 >  INPUT_BED_FILE        input BED file of genomic regions
@@ -201,8 +201,7 @@ usage: behst.py [-h] [-T TARGET_EXTENSION] [-Q QUERY_EXTENSION]
 >                        Aiden 2014 (hic_8celltypes.hiccups).
 >  -v, --version         current BEHST version
 
->Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. "BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range
-interactions". In preparation.
+>Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. "BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions". In preparation.
 
 
 
