@@ -6,6 +6,7 @@
 
 
 import argparse
+import subprocess
 
 INPUT_FILE="unknown"
 BEHST_DATA_FOLDER="unknown"
@@ -61,7 +62,5 @@ print "TRANSCRIPT_ANNOTATION_FILE: ",TRANSCRIPT_ANNOTATION_FILE
 print "HI_C_FILE: ",HI_C_FILE
 
 # ./project.sh $INPUT_FILE $QUERY_AC $TSS_EXT $GENE_ANNOTATION_FILE $TRANSCRIPT_ANNOTATION_FILE $HI_C_FILE
-
-import subprocess
 
 subprocess.check_call(['./project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])

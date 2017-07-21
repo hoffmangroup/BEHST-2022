@@ -12,26 +12,26 @@ set -o nounset -o pipefail -o errexit
 startTime=`date +%s`
 millisec_time_number=$(date +%s)
 
-printf "\n :: BEHST - Biological Enrichment of Hidden Sequence Targets ::\n\n"
+printf "\n :: BEHST - Biological Enrichment of Hidden Sequence Targets ./project.sh ::\n\n"
 
 
-if [ $1 = "--test" ]; then 
-
-	if [ ! -f "hiC_parser.py" ]; then
-	    echo "Executable file hiC_parser.py not found! The program will exit 1"
-	    exit 1
-	fi
-	if [ ! -f "gProfilerCall.r" ]; then
-	    echo "Executable file gProfilerCall.r not found! The program will exit 1"
-	    exit 1
-	fi
-	if [ ! -f "gene_annotation_parser.py" ]; then
-	    echo "Executable file gene_annotation_parser.py not found! The program will exit 1"
-	    exit 1
-	fi
-	echo "Executable files found, test passed."
-	exit 0
-fi
+# if [ $1 = "--test" ]; then 
+# 
+# 	if [ ! -f "hiC_parser.py" ]; then
+# 	    echo "Executable file hiC_parser.py not found! The program will exit 1"
+# 	    exit 1
+# 	fi
+# 	if [ ! -f "gProfilerCall.r" ]; then
+# 	    echo "Executable file gProfilerCall.r not found! The program will exit 1"
+# 	    exit 1
+# 	fi
+# 	if [ ! -f "gene_annotation_parser.py" ]; then
+# 	    echo "Executable file gene_annotation_parser.py not found! The program will exit 1"
+# 	    exit 1
+# 	fi
+# 	echo "Executable files found, test passed."
+# 	exit 0
+# fi
 
 
 INPUT_FILE=$1
@@ -101,8 +101,8 @@ ANALYSIS_RESULTS="gProfiler_results_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}
 
 
 
-./hiC_parser.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
-./gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
+python2.7 hiC_parser.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
+python2.7 gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
 
 
 # Similar to bedtools intersect, bedtools window searches for overlapping features in A and B. However, window adds a specified number (1000, by default) of base pairs upstream and downstream of each feature in A. In effect, this allows features in B that are “near” features in A to be detected.
