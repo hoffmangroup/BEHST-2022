@@ -8,6 +8,12 @@
 import argparse
 import subprocess
 
+from time import sleep
+from datetime import datetime
+start_time = datetime.now()
+print '### BEHST start time ', start_time
+
+
 INPUT_FILE="unknown"
 BEHST_DATA_FOLDER="unknown"
 TSS_EXT="default_et"
@@ -64,3 +70,8 @@ print "HI_C_FILE: ",HI_C_FILE
 # ./project.sh $INPUT_FILE $QUERY_AC $TSS_EXT $GENE_ANNOTATION_FILE $TRANSCRIPT_ANNOTATION_FILE $HI_C_FILE
 
 subprocess.check_call(['./project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])
+
+stop_time = datetime.now()
+print '### BEHST end time', stop_time
+elapsed_time = stop_time - start_time
+print 'Executed time', elapsed_time   

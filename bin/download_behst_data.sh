@@ -7,7 +7,7 @@ set -o pipefail -o errexit
 # set -o nounset
 # set -o xtrace
 
-cd ~
+cd $HOME
 
 # the --small option lets the script download only one file for testing
 
