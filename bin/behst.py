@@ -2,7 +2,7 @@
 
 # To run this script:
 #
-# ./behst.py ../data/pressto_LUNG_enhancers.bed
+# ./behst.py ../data/pressto_LUNG_enhancers.bed dataFolderName
 
 
 import argparse
@@ -67,9 +67,10 @@ print "GENE_ANNOTATION_FILE: ",GENE_ANNOTATION_FILE
 print "TRANSCRIPT_ANNOTATION_FILE: ",TRANSCRIPT_ANNOTATION_FILE
 print "HI_C_FILE: ",HI_C_FILE
 
-# ./project.sh $INPUT_FILE $QUERY_AC $TSS_EXT $GENE_ANNOTATION_FILE $TRANSCRIPT_ANNOTATION_FILE $HI_C_FILE
+# subprocess.call(['./project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])
+# $PREFIX/bin
 
-subprocess.check_call(['./project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])
+subprocess.call(['/usr/bin/env', 'bash', 'project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])
 
 stop_time = datetime.now()
 print '### BEHST end time', stop_time
