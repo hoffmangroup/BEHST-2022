@@ -19,10 +19,15 @@ To run BEHST, you need to have the following programs and packages installed in 
 
 You can easily install and/or update these packages through `bioconda`, following these instructions:
 1. Install Miniconda [(instructions here)](https://conda.io/docs/install/quick.html)
+
 2. Type the following commands to set the proper conda channels:
+
 `conda config --add channels defaults;`
+
 `conda config --add channels conda-forge;`
+
 `conda config --add channels bioconda;`
+
 3. Type the following commands to install BEHST:
 `conda install -c bioconda behst;`
 
