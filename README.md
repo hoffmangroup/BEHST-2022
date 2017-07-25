@@ -34,7 +34,17 @@ You can easily install and/or update these packages through **conda** and **bioc
 
 `conda install -c bioconda behst;`
 
-## Execution instructions ##
+## Execution instructions - Quick start ##
+
+Download the default BEHST data files into the `~/myBEHSTdataFolder` data folder:
+
+`download_behst_data.sh ~/myBEHSTdataFolder`
+
+Apply BEHST on the FANTOM5 lung enhancers, by using the default gene annotations, the default transcript annotations, and the default Hi-C long range interactions:
+
+`behst.py ~/myBEHSTdataFolder/pressto_LUNG_enhancers.bed ~/myBEHSTdataFolder`
+
+## Execution instructions - Complete explanation ##
 To run BEHST, you first have to download the default data files. They are genomic regions files containing enhancers of FANTOM5 and VISTA which can be the input of your test, and the files of the data you need to run BEHST: a GENCODE annotation file, a principal transcript APPRIS file, and a Hi-C long-range interaction file.
 
 To download the data files, you have to run the `download_behst_data.sh` by providing the full path of there folder where you want to download the data files. For example:
