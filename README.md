@@ -30,6 +30,7 @@ You can easily install and/or update these packages through **bioconda**, follow
 `conda config --add channels bioconda;`
 
 3) Type the following commands to install BEHST:
+
 `conda install -c bioconda behst;`
 
 ## Execution instructions ##
