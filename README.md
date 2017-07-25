@@ -17,7 +17,7 @@ To run BEHST, you need to have the following programs and packages installed in 
 * **R** (version 3.3.2)
 * R **gProfileR** package
 
-You can easily install and/or update these packages through `bioconda`, following these instructions:
+You can easily install and/or update these packages through **bioconda**, following these instructions:
 
 1) Manually install Miniconda [(instructions here)](https://conda.io/docs/install/quick.html)
 
