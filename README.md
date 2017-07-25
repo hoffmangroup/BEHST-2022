@@ -97,8 +97,8 @@ All the code is licensed under the [GNU General Public License, version 2 (GPLv2
 
 ## Contacts ##
 
-BEHST was developed by Davide Chicco, Haixin Sarah Bi, and Michael M. Hoffman at the [Hoffman Lab](http://www.hoffmanlab.org) of the [Princess Margaret Cancer Centre](http://www.uhn.ca/PrincessMargaret/Research/) (Toronto, Ontario, Canada).
+BEHST was developed by [Davide Chicco](http://www.DavideChicco.it), Haixin Sarah Bi, and Michael M. Hoffman at the [Hoffman Lab](http://www.hoffmanlab.org) of the [Princess Margaret Cancer Centre](http://www.uhn.ca/PrincessMargaret/Research/) (Toronto, Ontario, Canada).
 
-For code questions, write to Davide Chicco: davide.chicco(AT)davidechicco.it
+For code questions, write to [Davide Chicco](http://www.DavideChicco.it): davide.chicco(AT)davidechicco.it
 
 For scientific questions, write to Michael M. Hoffman: michael.hoffman(AT)utoronto.ca
