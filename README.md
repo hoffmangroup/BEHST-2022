@@ -16,10 +16,11 @@ To run BEHST, you need to have the following programs and packages installed in 
 * Python **PyBedtools** package
 * **R** (version 3.3.2)
 * R **gProfileR** package
+* **conda** package
 
-You can easily install and/or update these packages through **bioconda**, following these instructions:
+You can easily install and/or update these packages through **conda** and **bioconda**, following these instructions:
 
-1) Manually install Miniconda [(instructions here)](https://conda.io/docs/install/quick.html)
+1) Manually install conda [(instructions here)](https://conda.io/docs/install/quick.html)
 
 2) Type the following commands to set the proper conda channels:
 
