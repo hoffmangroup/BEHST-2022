@@ -109,6 +109,7 @@ All the code is licensed under the [GNU General Public License, version 2 (GPLv2
 
 BEHST was developed by [Davide Chicco](http://www.DavideChicco.it), Haixin Sarah Bi, and Michael M. Hoffman at the [Hoffman Lab](http://www.hoffmanlab.org) of the [Princess Margaret Cancer Centre](http://www.uhn.ca/PrincessMargaret/Research/) (Toronto, Ontario, Canada).
 
-For code questions, write to [Davide Chicco](http://www.DavideChicco.it): davide.chicco(AT)davidechicco.it
+## Support ##
+For support of BEHST, please write to the [BEHST-users mailing list](behst-l@listserv.utoronto.ca), rather than writing the authors directly. Using the mailing list will get your question answered more quickly. It also allows us to pool knowledge and reduce getting the same inquiries over and over. Questions sent to the mailing list will receive a higher priority than those sent to us individually.
 
-For scientific questions, write to Michael M. Hoffman: michael.hoffman(AT)utoronto.ca
+If you do not want to read discussions about other people's use of BEHST, but would like to hear about new releases and other important information, please subscribe to the [BEHST-announce mailing list](behst-announce-l@listserv.utoronto.ca).
