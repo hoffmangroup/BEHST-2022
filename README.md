@@ -38,36 +38,36 @@ You can easily install and/or update these packages through **conda** and **bioc
 
 Download the default BEHST data files into a specific data folder (for example,  ~/myBEHSTdataFolder):
 
-`download_behst_data.sh ~/myBEHSTdataFolder`
+`behst-download-data ~/myBEHSTdataFolder`
 
 Apply BEHST to an input BED file of genomic regions, by using the default gene annotations, the default transcript annotations, and the default Hi-C long range interactions. For example, to apply BEHST to the FANTOM5 pancreas enhancers:
 
-`behst.py ~/myBEHSTdataFolder/pressto_PANCREAS_enhancers.bed ~/myBEHSTdataFolder`
+`behst ~/myBEHSTdataFolder/pressto_PANCREAS_enhancers.bed ~/myBEHSTdataFolder`
 
 ## Execution instructions - Complete explanation ##
 To run BEHST, you first have to download the default data files. They are genomic regions files containing enhancers of FANTOM5 and VISTA which can be the input of your test, and the files of the data you need to run BEHST: a GENCODE annotation file, a principal transcript APPRIS file, and a Hi-C long-range interaction file.
 
-To download the data files, you have to run the `download_behst_data.sh` by providing the full path of there folder where you want to download the data files. For example:
+To download the data files, you have to run the `behst-download-data` by providing the full path of there folder where you want to download the data files. For example:
 
-`download_behst_data.sh ~/myBEHSTdataFolder`
+`behst-download-data ~/myBEHSTdataFolder`
 
 This command downloads all the default data files of BEHST into the `~/myBEHSTdataFolder/` folder in your computer.
-After having downloaded all the default data files, you can use BEHST by calling the `behst.py` script providing two mandatory parameters (an input .bed file of genomic regions on which to apply BEHST, and the default data folder full path), and multiple optional parameters.
+After having downloaded all the default data files, you can use BEHST by calling the `behst` script providing two mandatory parameters (an input .bed file of genomic regions on which to apply BEHST, and the default data folder full path), and multiple optional parameters.
 With the optional parameters, you can specifify alternative values for the query extension (`-Q`) and the target extension (`-T`), and alternative files for the gene annotations (`g`), for the principal transcript file (`-t`), and for the long-range interaction file (`-i`).
 
 For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations (previously downloaded in the `~/myBEHSTdataFolder/` folder), the default APPRIS transcripts (previously downloaded in the `~/myBEHSTdataFolder/` folder), and the default Hi-C long range interactions (previously downloaded in the `~/myBEHSTdataFolder/` folder), run the following commands:
 
-`behst.py ~/myBEHSTdataFolder/pressto_LUNG_enhancers.bed ~/myBEHSTdataFolder`
+`behst ~/myBEHSTdataFolder/pressto_LUNG_enhancers.bed ~/myBEHSTdataFolder`
 
 The user can decide to use an alternative gene annotation file, an alternative transcript file, and an alternative chromatin loopings file, by specifying them as arguments to the `project.sh` script. The user can read the help by typing:
 
-`behst.py --help`
+`behst --help`
 
 This command will print the following instructions:
 
 
 
-    usage: behst.py [-h] [-T TARGET_EXTENSION] [-Q QUERY_EXTENSION]
+    usage: behst [-h] [-T TARGET_EXTENSION] [-Q QUERY_EXTENSION]
                          [-g GENE_ANNOTATION_FILE] [-t TRANSCRIPT_FILE]
                          [-i INTERACTION_FILE] [-v]
                          INPUT_BED_FILE
@@ -77,7 +77,7 @@ This command will print the following instructions:
       INPUT_BED_FILE        input BED file of genomic regions
       BEHST_DATA_FILES_FOLDER
                             path to the folder where you downloaded the default
-                            BEHST data files with ./download_behst_data.sh
+                            BEHST data files with ./behst-download-data
     
      optional arguments:
       -h, --help            show this help message and exit
