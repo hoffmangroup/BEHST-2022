@@ -44,7 +44,9 @@ print args
 
 
 INPUT_FILE = args.BEDFILE
-BEHST_DATA_FOLDER = args.DATADIR
+
+if args.data:
+  BEHST_DATA_FOLDER = args.data
 
 if args.target_extension:
   TSS_EXT = args.target_extension
