@@ -1,92 +1,41 @@
-#!/bin/bash
+#!/usr/bin/python2.7
+
+# To run this script:
 #
-#$ -cwd
-#$ -S /bin/bash
-#
-set -o pipefail -o errexit
-# set -o nounset
-# set -o xtrace
-
-cd $HOME
-
-# the --small option lets the script download only one file for testing
-
-printf "\n :: BEHST - Biological Enrichment of Hidden Sequence Targets behst-download-data ::\n\n"
+# ./behst.py ../data/pressto_LUNG_enhancers.bed dataFolderName
 
 
-if [ -z "$1" ]
-  then
-    echo
-    echo "Downloads BEHST default data to <data-folder>"
-    echo "Usage: $0 <data-folder> [--small]"
-    echo
-    exit 1
-fi
+import argparse
+import subprocess
 
-OUTDIR=$1
+from time import sleep
 
-mkdir -p $OUTDIR
-cd $OUTDIR
+from datetime import datetime
 
-wget http://behst.hoffmanlab.org/data/appris_data_principal.bed
-wget http://behst.hoffmanlab.org/data/gencode.v19.annotation_withproteinids.gtf
-wget http://behst.hoffmanlab.org/data/hic_8celltypes.hiccups
-wget http://behst.hoffmanlab.org/data/pressto_LIVER_enhancers.bed
+import os
 
-if [ "$2" != "--small" ]; then 
+BEHST_DATA_DIR=""
+SMALL_OPTION=""
 
-      wget http://behst.hoffmanlab.org/data/my.genome
-      wget http://behst.hoffmanlab.org/data/pressto_BLOOD_enhancers.bed
-      wget http://behst.hoffmanlab.org/data/pressto_BLOOD_enhancers_SHUFFLED.bed      
-      wget http://behst.hoffmanlab.org/data/pressto_LIVER_enhancers_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/pressto_LUNG_enhancers.bed
-      wget http://behst.hoffmanlab.org/data/pressto_LUNG_enhancers_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/pressto_PANCREAS_enhancers.bed
-      wget http://behst.hoffmanlab.org/data/pressto_PANCREAS_enhancers_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/pressto_STOMACH_enhancers.bed
-      wget http://behst.hoffmanlab.org/data/pressto_STOMACH_enhancers_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_pressto_BLOOD_enhancers.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_pressto_LIVER_enhancers.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_pressto_LUNG_enhancers.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_pressto_PANCREAS_enhancers.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_pressto_STOMACH_enhancers.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_EYE_sorted.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_FOREBRAIN_sorted.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_HEART_sorted.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_HINDBRAIN_sorted.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_Human_BRAIN_sorted.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_Human_sorted.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_LIMB_sorted.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_MIDBRAIN_sorted.bed
-      wget http://behst.hoffmanlab.org/data/randomlyShuffledNew_vista_NOSE_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_EYE_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/vista_EYE_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_EYE_TEMP
-      wget http://behst.hoffmanlab.org/data/vista_FOREBRAIN_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/vista_FOREBRAIN_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_HEART_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/vista_HEART_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_HEART_TEMP
-      wget http://behst.hoffmanlab.org/data/vista_HINDBRAIN_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/vista_HINDBRAIN_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_Human_BRAIN_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/vista_Human_BRAIN_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_Human_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/vista_Human_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_LIMB_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/vista_LIMB_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_LIMB_sorted_EDITED_FOR_GREAT.bed
-      wget http://behst.hoffmanlab.org/data/vista_MIDBRAIN_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/vista_MIDBRAIN_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_MIDBRAIN_sorted_EDITED_FOR_GREAT.bed
-      wget http://behst.hoffmanlab.org/data/vista_NOSE_SHUFFLED.bed
-      wget http://behst.hoffmanlab.org/data/vista_NOSE_sorted.bed
-      wget http://behst.hoffmanlab.org/data/vista_NOSE_sorted_FOR_GREAT.bed
+citation = "Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. \"BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions\". In preparation."
+parser = argparse.ArgumentParser(epilog=citation)
 
-fi
+parser.add_argument("-d", "--data", metavar="REFDIR", help="Folder where to download the default data files (default $XDG_DATA_HOME/behst, if set, or $HOME/.local/share/behst otherwise)\n", action="store")
+parser.add_argument("--small", help="If activated, download only the minimal set of files to test BEHST functionality (default files needed for valid genomic set enrichment)\n", action="store_true")
 
-# Let's also create the /results/ and /temp/ folder that BEHST needs
+args = parser.parse_args()
+print args
 
-mkdir -p ../results
 
-mkdir -p ../temp
+if args.data:
+  BEHST_DATA_DIR = args.data
+
+if args.small:
+  SMALL_OPTION = "--small"
+
+#print "BEHST_DATA_DIR: ",BEHST_DATA_DIR
+#print "SMALL_OPTION: ",SMALL_OPTION
+
+
+
+subprocess.call(['/usr/bin/env', 'bash', 'behst-download-data.sh', BEHST_DATA_DIR, SMALL_OPTION])
