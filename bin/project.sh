@@ -42,6 +42,7 @@ TSS_EXT=$4
 GENE_ANNOTATION_FILE=$5
 TRANSCRIPT_ANNOTATION_FILE=$6
 HI_C_FILE=$7
+GPROFILER_OFF=$8
 
 if [ ! -f $INPUT_FILE ]; then
     printf "(project.sh) File $INPUT_FILE not found!\n The program will stop"
@@ -75,7 +76,7 @@ fi
 printf "\n The gene annotation file is  "$GENE_ANNOTATION_FILE "\n"
 printf "\n The transcript annotation file is  "$TRANSCRIPT_ANNOTATION_FILE "\n"
 printf "\n The long range interaction file is  "$HI_C_FILE "\n\n"
-
+echo
 
 filename=$(basename "$INPUT_FILE")
 filename="${filename%.*}"
@@ -113,6 +114,7 @@ sort -V $INPUT_FILE | bedtools window -w $QUERY_AC -a stdin -b "${TEMP_DIR}/$HI_
 # comment the following line to save the transcripts
 rm "${TEMP_DIR}/principal_transcripts.bed" "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
 
+echo
 printf "\nBEHST generated the resulting gene list in the following file: \n "${RESULTS_DIR}/$OUTPUT_FILE"\n\n"
 
 wc -l ${RESULTS_DIR}/$OUTPUT_FILE
@@ -121,112 +123,119 @@ wc -l ${RESULTS_DIR}/$OUTPUT_FILE
 # printf "the program will stop here"
 # exit
 
-GPROFILER_OUTPUT_FILE=${RESULTS_DIR}/${INPUT_FILE_NEW}_${ANALYSIS_RESULTS}_rev
-Rscript gProfilerCall.r ${RESULTS_DIR}/$OUTPUT_FILE > $GPROFILER_OUTPUT_FILE
+if [ $GPROFILER_OFF = "False" ]; then 
 
-# head $GPROFILER_OUTPUT_FILE
+  echo
+  echo "The program is calling g:ProfileR right now"
+  echo
 
-# grep -A 15 "term.name" $GPROFILER_OUTPUT_FILE
+  GPROFILER_OUTPUT_FILE=${RESULTS_DIR}/${INPUT_FILE_NEW}_${ANALYSIS_RESULTS}_rev
+  Rscript gProfilerCall.r ${RESULTS_DIR}/$OUTPUT_FILE > $GPROFILER_OUTPUT_FILE
 
-line_of_term_id=$(sed -n '/term.id/=' $GPROFILER_OUTPUT_FILE) # we understand the line number of the term.id list
-number_of_GO_terms=$((line_of_term_id-2))
-number_of_GO_lines=$((line_of_term_id-1))
+  # head $GPROFILER_OUTPUT_FILE
 
-LEFT_TEMP_GO_FILE=${TEMP_DIR}/"temp_left_GO_line_file_rand"${millisec_time_number}
-LEFT_TEMP_GO_FILE2=${TEMP_DIR}/"temp_left_GO_line_file2_rand"${millisec_time_number}
-LEFT_TEMP_GO_FILE3=${TEMP_DIR}/"temp_left_GO_line_file3_rand"${millisec_time_number}
-head -$number_of_GO_lines $GPROFILER_OUTPUT_FILE > $LEFT_TEMP_GO_FILE
-tail -n +2 $LEFT_TEMP_GO_FILE > $LEFT_TEMP_GO_FILE2
+  # grep -A 15 "term.name" $GPROFILER_OUTPUT_FILE
 
-central_part_start_line=$((number_of_GO_lines+1))
-central_part_end_line=$((central_part_start_line+number_of_GO_terms))
-CENTRAL_TEMP_GO_FILE=${TEMP_DIR}/"temp_central_GO_line_file_rand"${millisec_time_number}
-CENTRAL_TEMP_GO_FILE2=${TEMP_DIR}/"temp_central_GO_line_file2_rand"${millisec_time_number}
-CENTRAL_TEMP_GO_FILE3=${TEMP_DIR}/"temp_central_GO_line_file3_rand"${millisec_time_number}
+  line_of_term_id=$(sed -n '/term.id/=' $GPROFILER_OUTPUT_FILE) # we understand the line number of the term.id list
+  number_of_GO_terms=$((line_of_term_id-2))
+  number_of_GO_lines=$((line_of_term_id-1))
 
-sed -n ${central_part_start_line}','${central_part_end_line}'p' $GPROFILER_OUTPUT_FILE > $CENTRAL_TEMP_GO_FILE
-tail -n +2 $CENTRAL_TEMP_GO_FILE > $CENTRAL_TEMP_GO_FILE2
+  LEFT_TEMP_GO_FILE=${TEMP_DIR}/"temp_left_GO_line_file_rand"${millisec_time_number}
+  LEFT_TEMP_GO_FILE2=${TEMP_DIR}/"temp_left_GO_line_file2_rand"${millisec_time_number}
+  LEFT_TEMP_GO_FILE3=${TEMP_DIR}/"temp_left_GO_line_file3_rand"${millisec_time_number}
+  head -$number_of_GO_lines $GPROFILER_OUTPUT_FILE > $LEFT_TEMP_GO_FILE
+  tail -n +2 $LEFT_TEMP_GO_FILE > $LEFT_TEMP_GO_FILE2
 
+  central_part_start_line=$((number_of_GO_lines+1))
+  central_part_end_line=$((central_part_start_line+number_of_GO_terms))
+  CENTRAL_TEMP_GO_FILE=${TEMP_DIR}/"temp_central_GO_line_file_rand"${millisec_time_number}
+  CENTRAL_TEMP_GO_FILE2=${TEMP_DIR}/"temp_central_GO_line_file2_rand"${millisec_time_number}
+  CENTRAL_TEMP_GO_FILE3=${TEMP_DIR}/"temp_central_GO_line_file3_rand"${millisec_time_number}
 
-
-second_part_start_line=$((number_of_GO_lines*2+1))
-second_part_end_line=$((second_part_start_line+number_of_GO_terms))
-RIGHT_TEMP_GO_FILE=${TEMP_DIR}/"temp_right_GO_line_file_rand"${millisec_time_number}
-RIGHT_TEMP_GO_FILE2=${TEMP_DIR}/"temp_right_GO_line_file2_rand"${millisec_time_number}
-RIGHT_TEMP_GO_FILE3=${TEMP_DIR}/"temp_right_GO_line_file3_rand"${millisec_time_number}
-
-sed -n ${second_part_start_line}','${second_part_end_line}'p' $GPROFILER_OUTPUT_FILE > $RIGHT_TEMP_GO_FILE
-tail -n +2 $RIGHT_TEMP_GO_FILE > $RIGHT_TEMP_GO_FILE2
-
-sed 's/ \+ /\t/g' $LEFT_TEMP_GO_FILE2 > ${LEFT_TEMP_GO_FILE3}
-sed 's/ \+ /\t/g' $CENTRAL_TEMP_GO_FILE2 > ${CENTRAL_TEMP_GO_FILE3}
-sed 's/ \+ /\t/g' $RIGHT_TEMP_GO_FILE2 > ${RIGHT_TEMP_GO_FILE3}
-
-MERGED_TEMP_GO_FILE=${TEMP_DIR}/"temp_merged_GO_line_file_rand"${millisec_time_number}
-MERGED_TEMP_GO_FILE2=${TEMP_DIR}/"temp_merged_GO_line_file2_rand"${millisec_time_number}
-MERGED_TEMP_GO_FILE3=${TEMP_DIR}/"temp_merged_GO_line_file3_rand"${millisec_time_number}
-paste $LEFT_TEMP_GO_FILE3 $CENTRAL_TEMP_GO_FILE3 $RIGHT_TEMP_GO_FILE3 > $MERGED_TEMP_GO_FILE
-sed 's/ \+ /\t/g' $MERGED_TEMP_GO_FILE > $MERGED_TEMP_GO_FILE2
-
-TAB=$'\t' 
+  sed -n ${central_part_start_line}','${central_part_end_line}'p' $GPROFILER_OUTPUT_FILE > $CENTRAL_TEMP_GO_FILE
+  tail -n +2 $CENTRAL_TEMP_GO_FILE > $CENTRAL_TEMP_GO_FILE2
 
 
-MERGED_TEMP_GO_FILE3_SORTED=${MERGED_TEMP_GO_FILE3}"_sorted"
-MERGED_TEMP_GO_FILE3_SORTED2=${MERGED_TEMP_GO_FILE3_SORTED}"_2"
 
-sed -r 's/(TRUE|FALSE|NA)[[:space:]]*//g' $MERGED_TEMP_GO_FILE2 > $MERGED_TEMP_GO_FILE3
-#sed -r "s/${TAB}(TRUE|FALSE|NA)[[:space:]]*//g" $MERGED_TEMP_GO_FILE2 > $MERGED_TEMP_GO_FILE3
+  second_part_start_line=$((number_of_GO_lines*2+1))
+  second_part_end_line=$((second_part_start_line+number_of_GO_terms))
+  RIGHT_TEMP_GO_FILE=${TEMP_DIR}/"temp_right_GO_line_file_rand"${millisec_time_number}
+  RIGHT_TEMP_GO_FILE2=${TEMP_DIR}/"temp_right_GO_line_file2_rand"${millisec_time_number}
+  RIGHT_TEMP_GO_FILE3=${TEMP_DIR}/"temp_right_GO_line_file3_rand"${millisec_time_number}
 
-# sed 's/FALSE //g' $MERGED_TEMP_GO_FILE2 >> $MERGED_TEMP_GO_FILE3 # TO IMPROVE
-sort -k3,3g  $MERGED_TEMP_GO_FILE3 > $MERGED_TEMP_GO_FILE3_SORTED
+  sed -n ${second_part_start_line}','${second_part_end_line}'p' $GPROFILER_OUTPUT_FILE > $RIGHT_TEMP_GO_FILE
+  tail -n +2 $RIGHT_TEMP_GO_FILE > $RIGHT_TEMP_GO_FILE2
 
+  sed 's/ \+ /\t/g' $LEFT_TEMP_GO_FILE2 > ${LEFT_TEMP_GO_FILE3}
+  sed 's/ \+ /\t/g' $CENTRAL_TEMP_GO_FILE2 > ${CENTRAL_TEMP_GO_FILE3}
+  sed 's/ \+ /\t/g' $RIGHT_TEMP_GO_FILE2 > ${RIGHT_TEMP_GO_FILE3}
 
-cut -f3,10,11,14 $MERGED_TEMP_GO_FILE3_SORTED > $MERGED_TEMP_GO_FILE3_SORTED2
+  MERGED_TEMP_GO_FILE=${TEMP_DIR}/"temp_merged_GO_line_file_rand"${millisec_time_number}
+  MERGED_TEMP_GO_FILE2=${TEMP_DIR}/"temp_merged_GO_line_file2_rand"${millisec_time_number}
+  MERGED_TEMP_GO_FILE3=${TEMP_DIR}/"temp_merged_GO_line_file3_rand"${millisec_time_number}
+  paste $LEFT_TEMP_GO_FILE3 $CENTRAL_TEMP_GO_FILE3 $RIGHT_TEMP_GO_FILE3 > $MERGED_TEMP_GO_FILE
+  sed 's/ \+ /\t/g' $MERGED_TEMP_GO_FILE > $MERGED_TEMP_GO_FILE2
 
-#sed "1 s/$/ ${TAB}${QUERY_AC}/" $MERGED_TEMP_GO_FILE3_SORTED2 > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number} # ? ? ?
-
-## ORIGINAL
-grep "GO:" -m 1 $MERGED_TEMP_GO_FILE3_SORTED2 >  ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number} || true
-
-# result=$(grep "GO:" -m 1 $MERGED_TEMP_GO_FILE3_SORTED2 || true)
-# 
-# if [[ $result == true ]]; then
-#     printf "$result" > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
-#   else
-#     printf "${TAB}${TAB}${TAB}${TAB}" > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
-# fi
-
-sed "1 s/$/ ${TAB}${QUERY_AC} ${TAB}${TSS_EXT}/" ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
-
-rm $LEFT_TEMP_GO_FILE
-rm $LEFT_TEMP_GO_FILE2
-rm $RIGHT_TEMP_GO_FILE
-rm $RIGHT_TEMP_GO_FILE2
-rm $CENTRAL_TEMP_GO_FILE
-rm $CENTRAL_TEMP_GO_FILE2
-rm $MERGED_TEMP_GO_FILE # output file
-rm $MERGED_TEMP_GO_FILE2
-rm $MERGED_TEMP_GO_FILE3
-rm $MERGED_TEMP_GO_FILE3_SORTED
-rm $RIGHT_TEMP_GO_FILE3
-rm $CENTRAL_TEMP_GO_FILE3
-rm $LEFT_TEMP_GO_FILE3
+  TAB=$'\t' 
 
 
-#GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_AC"${QUERY_AC}"_EXT"${TSS_EXT}"_sorted_rand"${millisec_time_number}
+  MERGED_TEMP_GO_FILE3_SORTED=${MERGED_TEMP_GO_FILE3}"_sorted"
+  MERGED_TEMP_GO_FILE3_SORTED2=${MERGED_TEMP_GO_FILE3_SORTED}"_2"
 
-GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_rand"${millisec_time_number}
+  sed -r 's/(TRUE|FALSE|NA)[[:space:]]*//g' $MERGED_TEMP_GO_FILE2 > $MERGED_TEMP_GO_FILE3
+  #sed -r "s/${TAB}(TRUE|FALSE|NA)[[:space:]]*//g" $MERGED_TEMP_GO_FILE2 > $MERGED_TEMP_GO_FILE3
 
-grep "GO:" $MERGED_TEMP_GO_FILE3_SORTED2 > $GO_LIST_FILE
+  # sed 's/FALSE //g' $MERGED_TEMP_GO_FILE2 >> $MERGED_TEMP_GO_FILE3 # TO IMPROVE
+  sort -k3,3g  $MERGED_TEMP_GO_FILE3 > $MERGED_TEMP_GO_FILE3_SORTED
 
-printf "\n BEHST generated the output GO list into the following file: \n %s\n\n" $GO_LIST_FILE
 
-endTime=`date +%s`
-runtime=$((endTime-startTime))
-printf 'project.sh Total running time: %dhours,  %dminutes, %dseconds\n' $(($runtime/3600)) $(($runtime%3600/60)) $(($runtime%60))
+  cut -f3,10,11,14 $MERGED_TEMP_GO_FILE3_SORTED > $MERGED_TEMP_GO_FILE3_SORTED2
 
-rm -r $TEMP_DIR
+  #sed "1 s/$/ ${TAB}${QUERY_AC}/" $MERGED_TEMP_GO_FILE3_SORTED2 > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number} # ? ? ?
 
-# to retrieve a genome assembly (solution from https://www.biostars.org/p/98121/):
-# mysql --user=genome --host=genome-mysql.cse.ucsc.edu -A -e
-# \"select chrom, size from hg19.chromInfo\" > hg19.genome
+  ## ORIGINAL
+  grep "GO:" -m 1 $MERGED_TEMP_GO_FILE3_SORTED2 >  ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number} || true
+
+  # result=$(grep "GO:" -m 1 $MERGED_TEMP_GO_FILE3_SORTED2 || true)
+  # 
+  # if [[ $result == true ]]; then
+  #     printf "$result" > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
+  #   else
+  #     printf "${TAB}${TAB}${TAB}${TAB}" > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
+  # fi
+
+  sed "1 s/$/ ${TAB}${QUERY_AC} ${TAB}${TSS_EXT}/" ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
+
+  rm $LEFT_TEMP_GO_FILE
+  rm $LEFT_TEMP_GO_FILE2
+  rm $RIGHT_TEMP_GO_FILE
+  rm $RIGHT_TEMP_GO_FILE2
+  rm $CENTRAL_TEMP_GO_FILE
+  rm $CENTRAL_TEMP_GO_FILE2
+  rm $MERGED_TEMP_GO_FILE # output file
+  rm $MERGED_TEMP_GO_FILE2
+  rm $MERGED_TEMP_GO_FILE3
+  rm $MERGED_TEMP_GO_FILE3_SORTED
+  rm $RIGHT_TEMP_GO_FILE3
+  rm $CENTRAL_TEMP_GO_FILE3
+  rm $LEFT_TEMP_GO_FILE3
+
+
+  #GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_AC"${QUERY_AC}"_EXT"${TSS_EXT}"_sorted_rand"${millisec_time_number}
+
+  GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_rand"${millisec_time_number}
+
+  grep "GO:" $MERGED_TEMP_GO_FILE3_SORTED2 > $GO_LIST_FILE
+
+  printf "\n BEHST generated the output GO list into the following file: \n %s\n\n" $GO_LIST_FILE
+
+  endTime=`date +%s`
+  runtime=$((endTime-startTime))
+  printf 'project.sh Total running time: %dhours,  %dminutes, %dseconds\n' $(($runtime/3600)) $(($runtime%3600/60)) $(($runtime%60))
+
+  rm -r $TEMP_DIR
+
+  # to retrieve a genome assembly (solution from https://www.biostars.org/p/98121/):
+  # mysql --user=genome --host=genome-mysql.cse.ucsc.edu -A -e
+  # \"select chrom, size from hg19.chromInfo\" > hg19.genome
+fi

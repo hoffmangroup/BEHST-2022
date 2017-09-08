@@ -7,6 +7,7 @@
 
 import argparse
 import subprocess
+import sys
 
 from time import sleep
 from datetime import datetime
@@ -20,6 +21,7 @@ QUERY_AC="default_eq"
 GENE_ANNOTATION_FILE="default_gene_annotation_file"
 TRANSCRIPT_ANNOTATION_FILE="default_transcript_annotation_file"
 HI_C_FILE="default_long_range_interaction_file"
+GPROFILER_OFF= "False"
 
 
 citation = "Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. \"BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions\". In preparation."
@@ -34,6 +36,7 @@ parser.add_argument("-d", "--data", metavar="DATADIR", help="path to directory w
 parser.add_argument("-g", "--gene-annotation-file", metavar='FILE', help="path of gene annotation file (GTF format, default DATADIR/gencode.v19.annotation_withproteinids.gtf).\n", action="store")
 parser.add_argument("-t", "--transcript-file", metavar='FILE', help="path to the principal transcript file (BED format, default DATADIR/appris_data_principal.bed)\n\n", action="store")
 parser.add_argument("-i", "--interaction-file", metavar='FILE', help="path to the chromatin interactions file (HICCUPS Format, default DATADIR/hic_8celltypes.hiccups).\n\n", action="store")
+parser.add_argument("--gProfilerOFF", help="If activated, generate the gene list and do not call g:ProfileR)\n", action="store_true")
 
 parser.add_argument("-v", "--version", help="print current BEHST version\n", action="version", version='%(prog)s (version 1.5)')
 
@@ -63,6 +66,9 @@ if args.transcript_file:
 if args.interaction_file:
   HI_C_FILE = args.interaction_file
   
+if args.gProfilerOFF:
+  GPROFILER_OFF = "True"
+  
 
 print "INPUT_FILE: ",INPUT_FILE
 print "BEHST_DATA_FOLDER: ",BEHST_DATA_FOLDER
@@ -71,8 +77,11 @@ print "QUERY_AC: ",QUERY_AC
 print "GENE_ANNOTATION_FILE: ",GENE_ANNOTATION_FILE
 print "TRANSCRIPT_ANNOTATION_FILE: ",TRANSCRIPT_ANNOTATION_FILE
 print "HI_C_FILE: ",HI_C_FILE
+print "GPROFILER_OFF: ", GPROFILER_OFF
+
+# sys.exit(0)
 
 # subprocess.call(['./project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])
 # $PREFIX/bin
 
-subprocess.call(['/usr/bin/env', 'bash', 'project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])
+subprocess.call(['/usr/bin/env', 'bash', 'project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE, GPROFILER_OFF])

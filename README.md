@@ -64,14 +64,14 @@ The user can decide to use an alternative gene annotation file, an alternative t
 `behst --help`
 
 This command will print the following instructions:
-
+    
     usage: behst [-h] [-T BP] [-Q BP] [-d DATADIR] [-g FILE] [-t FILE] [-i FILE]
-                 [-v]
-                 BEDFILE
+             [--gProfilerOFF] [-v]
+             BEDFILE
 
     positional arguments:
       BEDFILE               path to query genomic region file (BED format) regions
-
+    
     optional arguments:
       -h, --help            show this help message and exit
       -T BP, --target-extension BP
@@ -90,13 +90,13 @@ This command will print the following instructions:
       -i FILE, --interaction-file FILE
                             path to the chromatin interactions file (HICCUPS
                             Format, default DATADIR/hic_8celltypes.hiccups).
+      --gProfilerOFF        If activated, generate the gene list and do not call
+                            g:ProfileR)
       -v, --version         print current BEHST version
 
     Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. "BEHST: Genomic set
     enrichment analysis enhanced through integration of chromatin long-range
     interactions". In preparation.
-
-
 
 ## License ##
 All the code is licensed under the [GNU General Public License, version 2 (GPLv2)](http://www.gnu.org/licenses/gpl-2.0-standalone.html).
