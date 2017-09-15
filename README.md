@@ -63,10 +63,12 @@ The user can decide to use an alternative gene annotation file, an alternative t
 
 `behst --help`
 
+The user can also decide to terminate the execution after the production of the gene list, and to avoid the call to gProfileR. In this case, the user has to specify the `--no-gprofiler` option.
+
 This command will print the following instructions:
     
     usage: behst [-h] [-T BP] [-Q BP] [-d DATADIR] [-g FILE] [-t FILE] [-i FILE]
-             [--gProfilerOFF] [-v]
+             [--no-gprofiler] [-v]
              BEDFILE
 
     positional arguments:
@@ -90,7 +92,7 @@ This command will print the following instructions:
       -i FILE, --interaction-file FILE
                             path to the chromatin interactions file (HICCUPS
                             Format, default DATADIR/hic_8celltypes.hiccups).
-      --gProfilerOFF        If activated, generate the gene list and do not call
+      --no-gprofiler        If activated, generate the gene list and do not call
                             g:ProfileR)
       -v, --version         print current BEHST version
 

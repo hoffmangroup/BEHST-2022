@@ -36,7 +36,7 @@ parser.add_argument("-d", "--data", metavar="DATADIR", help="path to directory w
 parser.add_argument("-g", "--gene-annotation-file", metavar='FILE', help="path of gene annotation file (GTF format, default DATADIR/gencode.v19.annotation_withproteinids.gtf).\n", action="store")
 parser.add_argument("-t", "--transcript-file", metavar='FILE', help="path to the principal transcript file (BED format, default DATADIR/appris_data_principal.bed)\n\n", action="store")
 parser.add_argument("-i", "--interaction-file", metavar='FILE', help="path to the chromatin interactions file (HICCUPS Format, default DATADIR/hic_8celltypes.hiccups).\n\n", action="store")
-parser.add_argument("--gProfilerOFF", help="If activated, generate the gene list and do not call g:ProfileR)\n", action="store_true")
+parser.add_argument("--no-gprofiler", help="If activated, generate the gene list and do not call g:ProfileR)\n", action="store_true")
 
 parser.add_argument("-v", "--version", help="print current BEHST version\n", action="version", version='%(prog)s (version 1.5)')
 
@@ -66,7 +66,7 @@ if args.transcript_file:
 if args.interaction_file:
   HI_C_FILE = args.interaction_file
   
-if args.gProfilerOFF:
+if args.no_gprofiler:
   GPROFILER_OFF = "True"
   
 
