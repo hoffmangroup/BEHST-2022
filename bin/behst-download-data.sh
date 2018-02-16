@@ -47,6 +47,10 @@ wget https://www.pmgenomics.ca/hoffmanlab/proj/behst/data/gencode.v19.annotation
 wget https://www.pmgenomics.ca/hoffmanlab/proj/behst/data/hic_8celltypes.hiccups
 wget https://www.pmgenomics.ca/hoffmanlab/proj/behst/data/pressto_LIVER_enhancers.bed
 
+wget https://www.pmgenomics.ca/hoffmanlab/proj/behst/data/appris_data_principal_bed.pkl
+wget https://www.pmgenomics.ca/hoffmanlab/proj/behst/data/gencode.v19.annotation_withproteinids_gtf.pkl
+wget https://www.pmgenomics.ca/hoffmanlab/proj/behst/data/hic_8celltypes_hiccups.pkl
+
 if [ "$2" != "--small" ]; then 
 
       wget https://www.pmgenomics.ca/hoffmanlab/proj/behst/data/my.genome
