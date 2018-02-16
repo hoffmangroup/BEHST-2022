@@ -44,6 +44,15 @@ TRANSCRIPT_ANNOTATION_FILE=$6
 HI_C_FILE=$7
 GPROFILER_OFF=$8
 
+ORIGINAL_INPUT_FILE=$1
+ORIGINAL_BEHST_DATA_FOLDER=$2
+ORIGINAL_QUERY_AC=$3
+ORIGINAL_TSS_EXT=$4
+ORIGINAL_GENE_ANNOTATION_FILE=$5
+ORIGINAL_TRANSCRIPT_ANNOTATION_FILE=$6
+ORIGINAL_HI_C_FILE=$7
+ORIGINAL_GPROFILER_OFF=$8
+
 if [ ! -f $INPUT_FILE ]; then
     printf "(project.sh) File $INPUT_FILE not found!\n The program will stop"
     exit 1
@@ -102,10 +111,29 @@ ANALYSIS_RESULTS="gProfiler_results_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}
 # [ $# -ge 1 -a -f "S1" ] && INPUT="$1" || INPUT="-"
 
 
+if [ $ORIGINAL_HI_C_FILE = "default_long_range_interaction_file" ]; then 
+   HI_C_PICKLE_FILE=$BEHST_DATA_FOLDER"/hic_8celltypes_hiccups.pkl"
+   python2.7 hiC_parser_load_pickle_file.py $HI_C_PICKLE_FILE | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE" 
+else
+  # standard treatment
+  python2.7 hiC_parser.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE" 
+fi
 
-python2.7 hiC_parser.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
-python2.7 gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
+#
+# part replaced by the previous pickle phase
+#
+# python2.7 hiC_parser_PICKLED.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
 
+
+if [ $ORIGINAL_GENE_ANNOTATION_FILE = "default_gene_annotation_file" ] && [ $ORIGINAL_TRANSCRIPT_ANNOTATION_FILE = "default_transcript_annotation_file" ]; then
+    GENE_ANNOTATION_PICKLED_FILE=$BEHST_DATA_FOLDER"/gencode.v19.annotation_withproteinids_gtf.pkl"
+    TRANSCRIPT_ANNOTATION_PICKLE_FILE=$BEHST_DATA_FOLDER"/appris_data_principal_bed.pkl"
+    
+    python2.7 gene_annotation_parser_load_pickled_files.py "$GENE_ANNOTATION_PICKLED_FILE" "$TRANSCRIPT_ANNOTATION_PICKLE_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
+else
+    # standard treatment
+    python2.7 gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
+fi
 
 # Similar to bedtools intersect, bedtools window searches for overlapping features in A and B. However, window adds a specified number (1000, by default) of base pairs upstream and downstream of each feature in A. In effect, this allows features in B that are “near” features in A to be detected.
 
