@@ -5,7 +5,7 @@
 #$ -S /bin/bash
 #
 set -o nounset -o pipefail -o errexit
-set -o xtrace
+#set -o xtrace
 
 # ./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET DEFAULT_GENE_ANNOTATION_FILE DEFAULT_TRANSCRIPT_ANNOTATION_FILE DEFAULT_LONG_RANGE_INTERACTION_FILE
 
