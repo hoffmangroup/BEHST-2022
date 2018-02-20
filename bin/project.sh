@@ -5,7 +5,7 @@
 #$ -S /bin/bash
 #
 set -o nounset -o pipefail -o errexit
-#set -o xtrace
+set -o xtrace
 
 # ./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET DEFAULT_GENE_ANNOTATION_FILE DEFAULT_TRANSCRIPT_ANNOTATION_FILE DEFAULT_LONG_RANGE_INTERACTION_FILE
 
@@ -113,26 +113,26 @@ ANALYSIS_RESULTS="gProfiler_results_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}
 
 if [ $ORIGINAL_HI_C_FILE = "default_long_range_interaction_file" ]; then 
    HI_C_PICKLE_FILE=$BEHST_DATA_FOLDER"/hic_8celltypes_hiccups.pkl"
-   python hiC_parser_load_pickle_file.py $HI_C_PICKLE_FILE | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE" 
+   hiC_parser_load_pickle_file.py $HI_C_PICKLE_FILE | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE" 
 else
-  # standard treatment
-  python hiC_parser.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE" 
+    # standard treatment
+    hiC_parser.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE" 
 fi
 
 #
 # part replaced by the previous pickle phase
 #
-# python hiC_parser_PICKLED.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
+# hiC_parser_PICKLED.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
 
 
 if [ $ORIGINAL_GENE_ANNOTATION_FILE = "default_gene_annotation_file" ] && [ $ORIGINAL_TRANSCRIPT_ANNOTATION_FILE = "default_transcript_annotation_file" ]; then
     GENE_ANNOTATION_PICKLED_FILE=$BEHST_DATA_FOLDER"/gencode.v19.annotation_withproteinids_gtf.pkl"
     TRANSCRIPT_ANNOTATION_PICKLE_FILE=$BEHST_DATA_FOLDER"/appris_data_principal_bed.pkl"
     
-    python gene_annotation_parser_load_pickled_files.py "$GENE_ANNOTATION_PICKLED_FILE" "$TRANSCRIPT_ANNOTATION_PICKLE_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
+    gene_annotation_parser_load_pickled_files.py "$GENE_ANNOTATION_PICKLED_FILE" "$TRANSCRIPT_ANNOTATION_PICKLE_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
 else
     # standard treatment
-    python gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
+    gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
 fi
 
 # Similar to bedtools intersect, bedtools window searches for overlapping features in A and B. However, window adds a specified number (1000, by default) of base pairs upstream and downstream of each feature in A. In effect, this allows features in B that are “near” features in A to be detected.
