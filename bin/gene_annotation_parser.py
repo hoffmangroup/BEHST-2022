@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3.5
 
 import sys
 import pandas as pd
@@ -109,7 +109,7 @@ if PRINT_TSS_TO_FILE == False:
   merged_bedtool = merged_bedtool.each(TSS).saveas()
 else: # True
   tssFileName = "../temp/tss_list_"+str(time.time())+".bed" # Davide
-  print tssFileName  # Davide
+  print(tssFileName)  # Davide
   merged_bedtool = merged_bedtool.each(TSS).saveas(tssFileName)  # Davide
 
 
@@ -129,7 +129,7 @@ merged_basal_df = merged_bedtool.to_dataframe()
 merged_adjusted_df = merged_basal_df.copy()
 
 curr_i = 0
-prev = None
+prev = -1
 next = merged_basal_df.loc[curr_i + 1,]
 
 # Logic to perform extensions partially adapted from GREAT software
@@ -139,8 +139,8 @@ while curr_i < len(merged_basal_df):
                            'start'] = max(min(merged_basal_df.loc[curr_i, 
                                                                   'start'],
                                               max((prev['end'] + 1 \
-                                                   if prev is not None \
-                                                   else None), \
+                                                   if prev is not -1 \
+                                                   else -1), \
                                                   merged_basal_df.loc[curr_i, 
                                                                       'start'] \
                                                           - EXTENSION)), 0)
@@ -148,7 +148,7 @@ while curr_i < len(merged_basal_df):
                            'end'] = max(merged_basal_df.loc[curr_i, 
                                                             'end'],
                                         min((next['start'] - 1 
-                                             if next is not None else
+                                             if next is not -1 else
                                              (merged_basal_df.loc[curr_i, 
                                                                   'end']
                                               + EXTENSION)),
@@ -169,7 +169,7 @@ while curr_i < len(merged_basal_df):
     if curr_i < (len(merged_basal_df) - 1):
         next = merged_basal_df.loc[curr_i + 1,]
     else:
-        next = None
+        next = -1
 
 """
 Convert from df back to BedTool object to truncate chromStart 

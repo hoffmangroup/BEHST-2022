@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7 
+#!/usr/bin/env python3.5
 
 """
 
@@ -6,7 +6,8 @@ Script that loads the hic pickle file
 
 """
 
-import sys, csv, os, pickle, cPickle
+import sys, csv, os
+import _pickle as pickle
 
 pickledFileName = str(sys.argv[1])
 originalFile = pickledFileName.replace('_hiccups.pkl', '.hiccups')

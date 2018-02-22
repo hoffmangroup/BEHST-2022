@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3.5
 
 # To run this script:
 #
@@ -24,7 +24,7 @@ HI_C_FILE="default_long_range_interaction_file"
 GPROFILER_OFF= "False"
 
 
-citation = "Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. \"BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions\". In preparation."
+citation = "Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2018. \"BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions\". In preparation."
 parser = argparse.ArgumentParser(epilog=citation)
 
 
@@ -38,12 +38,12 @@ parser.add_argument("-t", "--transcript-file", metavar='FILE', help="path to the
 parser.add_argument("-i", "--interaction-file", metavar='FILE', help="path to the chromatin interactions file (HICCUPS Format, default DATADIR/hic_8celltypes.hiccups).\n\n", action="store")
 parser.add_argument("--no-gprofiler", help="If activated, generate the gene list and do not call g:ProfileR)\n", action="store_true")
 
-parser.add_argument("-v", "--version", help="print current BEHST version\n", action="version", version='%(prog)s (version 1.5)')
+parser.add_argument("-v", "--version", help="print current BEHST version\n", action="version", version='%(prog)s (version 2.6)')
 
 
 
 args = parser.parse_args()
-print args
+str(args)
 
 
 INPUT_FILE = args.BEDFILE
@@ -70,14 +70,14 @@ if args.no_gprofiler:
   GPROFILER_OFF = "True"
   
 
-print "INPUT_FILE: ",INPUT_FILE
-print "BEHST_DATA_FOLDER: ",BEHST_DATA_FOLDER
-print "TSS_EXT: ",TSS_EXT
-print "QUERY_AC: ",QUERY_AC
-print "GENE_ANNOTATION_FILE: ",GENE_ANNOTATION_FILE
-print "TRANSCRIPT_ANNOTATION_FILE: ",TRANSCRIPT_ANNOTATION_FILE
-print "HI_C_FILE: ",HI_C_FILE
-print "GPROFILER_OFF: ", GPROFILER_OFF
+print("INPUT_FILE: ",INPUT_FILE)
+print("BEHST_DATA_FOLDER: ",BEHST_DATA_FOLDER)
+print("TSS_EXT: ",TSS_EXT)
+print("QUERY_AC: ",QUERY_AC)
+print("GENE_ANNOTATION_FILE: ",GENE_ANNOTATION_FILE)
+print("TRANSCRIPT_ANNOTATION_FILE: ",TRANSCRIPT_ANNOTATION_FILE)
+print("HI_C_FILE: ",HI_C_FILE)
+print("GPROFILER_OFF: ", GPROFILER_OFF)
 
 # sys.exit(0)
 

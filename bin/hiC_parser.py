@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7 
+#!/usr/bin/env python3.5
 
 """
 This script takes a HiCCUPS_looplist.txt file as input, deletes columns apart from chromosome #'s and
@@ -12,7 +12,7 @@ dir = os.getcwd()
 output_name = str(os.path.basename(sys.argv[1])).split('.txt')[0] + '_filtered.bed'
 output = os.path.join(dir, ('../data/temp/' + output_name))
 
-with open(sys.argv[1], 'rb') as hi_c_file:
+with open(sys.argv[1], 'r') as hi_c_file:
     hi_c_reader = csv.reader(hi_c_file, delimiter = '\t')
     hi_c_filtered_output = csv.writer(sys.stdout, delimiter='\t')
 

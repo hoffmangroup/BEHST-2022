@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3.5
 
 #
 # General excercise script that saves the content of the hiccups file
@@ -9,7 +9,8 @@ import sys
 import pandas as pd
 import pybedtools as pbt
 import time
-import csv, os, pickle, cPickle
+import _pickle as pickle
+import csv, os
 
 EXTENSION = int(sys.argv[3])
 #EXTENSION = 16000
