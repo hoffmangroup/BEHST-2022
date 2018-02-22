@@ -17,7 +17,7 @@ import os
 BEHST_DATA_DIR=""
 SMALL_OPTION=""
 
-citation = "Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. \"BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions\". In preparation."
+citation = "Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2018. \"BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions\". In preparation."
 parser = argparse.ArgumentParser(epilog=citation)
 
 parser.add_argument("-d", "--data", metavar="REFDIR", help="Folder where to download the default data files (default $XDG_DATA_HOME/behst, if set, or $HOME/.local/share/behst otherwise)\n", action="store")

@@ -34,7 +34,7 @@ parser.add_argument("-Q", "--query-extension", help="query extension basepair in
 parser.add_argument("-g", "--gene-annotation-file", help="path of the gene annotation file (.gtf format). Default is the GENCODE annotation v.19 file (gencode.v19.annotation_withproteinids.gtf).\n", action="store")
 parser.add_argument("-t", "--transcript-file", help="path to the principal transcript file (.bed format). Default is APPRIS transcript 2017_01.v20 file (appris_data_principal.bed)\n\n", action="store")
 parser.add_argument("-i", "--interaction-file", help="path to the chromatin interactions file (.hiccups format). Default is the Hi-C HiCCUPS from Lieberman-Aiden 2014 (hic_8celltypes.hiccups).\n\n", action="store")
-parser.add_argument("-v", "--version", help="current BEHST version\n", action="version", version='%(prog)s (version 0.6)')
+parser.add_argument("-v", "--version", help="current BEHST version\n", action="version", version='%(prog)s (version 2.7)')
 
 args = parser.parse_args()
 print args

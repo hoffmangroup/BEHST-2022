@@ -1,5 +1,6 @@
 #!/bin/bash
-# #!/usr/bin/env python3.5
+#!/usr/bin/env python3.5
+#!/usr/bin/env Rscript
 #
 #$ -cwd
 #$ -S /bin/bash
