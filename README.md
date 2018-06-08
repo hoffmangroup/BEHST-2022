@@ -96,7 +96,7 @@ This command will print the following instructions:
                             g:ProfileR)
       -v, --version         print current BEHST version
 
-    Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2017. "BEHST: Genomic set
+    Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2018. "BEHST: Genomic set
     enrichment analysis enhanced through integration of chromatin long-range
     interactions". In preparation.
 
