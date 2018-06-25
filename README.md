@@ -34,7 +34,7 @@ Download the default BEHST data files into a specific data directory (for exampl
 
 Apply BEHST to an input BED file of genomic regions, by using the default gene annotations, the default transcript annotations, and the default Hi-C long range interactions. For example, to apply BEHST to the FANTOM5 pancreas enhancers, you first have to download the file with the following command:
 
-`wget wget https://www.hoffmanlab.org/proj/behst/data/pressto_PANCREAS_enhancers.bed`
+`wget https://www.hoffmanlab.org/proj/behst/data/pressto_PANCREAS_enhancers.bed`
 
 And then call BEHST with the following command:
 
