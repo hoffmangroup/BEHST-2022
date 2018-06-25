@@ -32,9 +32,13 @@ Download the default BEHST data files into a specific data directory (for exampl
 
 `behst-download-data -d ~/.local/share/behst`
 
-Apply BEHST to an input BED file of genomic regions, by using the default gene annotations, the default transcript annotations, and the default Hi-C long range interactions. For example, to apply BEHST to the FANTOM5 pancreas enhancers:
+Apply BEHST to an input BED file of genomic regions, by using the default gene annotations, the default transcript annotations, and the default Hi-C long range interactions. For example, to apply BEHST to the FANTOM5 pancreas enhancers, you first have to download the file with the following command:
 
-`behst ~/.local/share/behst/pressto_PANCREAS_enhancers.bed -d ~/.local/share/behst`
+`wget wget https://www.hoffmanlab.org/proj/behst/data/pressto_PANCREAS_enhancers.bed`
+
+And then call BEHST with the following command:
+
+`behst pressto_PANCREAS_enhancers.bed -d ~/.local/share/behst`
 
 ## Execution instructions - Complete explanation ##
 To run BEHST, you first have to download the default data files. They are genomic regions files containing enhancers of FANTOM5 and VISTA which can be the input of your test, and the files of the data you need to run BEHST: a GENCODE annotation file, a principal transcript APPRIS file, and a Hi-C long-range interaction file.
@@ -47,9 +51,11 @@ This command downloads all the default data files of BEHST into the `~/.local/sh
 After having downloaded all the default data files, you can use BEHST by calling the `behst` script providing two mandatory parameters (an input .bed file of genomic regions on which to apply BEHST, and the default data directory full path), and multiple optional parameters.
 With the optional parameters, you can specifify alternative values for the query extension (`-Q`) and the target extension (`-T`), and alternative files for the gene annotations (`g`), for the principal transcript file (`-t`), and for the long-range interaction file (`-i`).
 
-For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations (previously downloaded in the `~/.local/share/behst/` directory), the default APPRIS transcripts (previously downloaded in the `~/.local/share/behst/` directory), and the default Hi-C long range interactions (previously downloaded in the `~/.local/share/behst/` directory), run the following commands:
+For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations (previously downloaded in the `~/.local/share/behst/` directory), the default APPRIS transcripts (previously downloaded in the `~/.local/share/behst/` directory), and the default Hi-C long range interactions (previously downloaded in the `~/.local/share/behst/` directory), run the following commands. First, download the lung enhancers file:
 
-`behst ~/.local/share/behst/pressto_LUNG_enhancers.bed -d ~/.local/share/behst`
+`wget https://www.hoffmanlab.org/proj/behst/data/pressto_LUNG_enhancers.bed`
+
+`behst behst/pressto_LUNG_enhancers.bed -d ~/.local/share/behst`
 
 The user can decide to use an alternative gene annotation file, an alternative transcript file, and an alternative chromatin loopings file, by specifying them as arguments to the `project.sh` script. The user can read the help by typing:
 
