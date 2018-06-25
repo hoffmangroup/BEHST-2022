@@ -55,7 +55,9 @@ For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized
 
 `wget https://www.hoffmanlab.org/proj/behst/data/pressto_LUNG_enhancers.bed`
 
-`behst behst/pressto_LUNG_enhancers.bed -d ~/.local/share/behst`
+Then, apply BEHST to it:
+
+`behst pressto_LUNG_enhancers.bed -d ~/.local/share/behst`
 
 The user can decide to use an alternative gene annotation file, an alternative transcript file, and an alternative chromatin loopings file, by specifying them as arguments to the `project.sh` script. The user can read the help by typing:
 
