@@ -99,13 +99,17 @@ This command will print the following instructions:
     Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2018. "BEHST: Genomic set
     enrichment analysis enhanced through integration of chromatin long-range
     interactions". In preparation.
+    
+## Citation ##
+When using BEHST, please cite the following paper:
+
+> Davide Chicco, Haixin Sarah Bi, Juri Reimand, and Michael M. Hoffman, "BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions", 2018. *In preparation.*
+
 
 ## License ##
 All the code is licensed under the [GNU General Public License, version 2 (GPLv2)](http://www.gnu.org/licenses/gpl-2.0-standalone.html).
 
-
 ## Contacts ##
-
 BEHST was developed by [Davide Chicco](http://www.DavideChicco.it), Haixin Sarah Bi, and Michael M. Hoffman at the [Hoffman Lab](http://www.hoffmanlab.org) of the [Princess Margaret Cancer Centre](http://www.uhn.ca/PrincessMargaret/Research/) (Toronto, Ontario, Canada).
 
 ## Support ##
