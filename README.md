@@ -34,7 +34,7 @@ Download the default BEHST data files into a specific data directory (for exampl
 
 Apply BEHST to an input BED file of genomic regions, by using the default gene annotations, the default transcript annotations, and the default Hi-C long range interactions. For example, to apply BEHST to the FANTOM5 pancreas enhancers, you first have to download the file with the following command:
 
-`wget https://www.hoffmanlab.org/proj/behst/data/pressto_PANCREAS_enhancers.bed`
+`wget https://hoffmanlab.org/proj/behst/data/pressto_PANCREAS_enhancers.bed`
 
 And then call BEHST with the following command:
 
@@ -53,7 +53,7 @@ With the optional parameters, you can specifify alternative values for the query
 
 For example, to apply BEHST to the FANTOM5 lung enhancers by using the optimized hyper-parameter values QUERY = 24100 and TSS extension = 9400, the default GENCODE annotations (previously downloaded in the `~/.local/share/behst/` directory), the default APPRIS transcripts (previously downloaded in the `~/.local/share/behst/` directory), and the default Hi-C long range interactions (previously downloaded in the `~/.local/share/behst/` directory), run the following commands. First, download the lung enhancers file:
 
-`wget https://www.hoffmanlab.org/proj/behst/data/pressto_LUNG_enhancers.bed`
+`wget https://hoffmanlab.org/proj/behst/data/pressto_LUNG_enhancers.bed`
 
 Then, apply BEHST to it:
 
