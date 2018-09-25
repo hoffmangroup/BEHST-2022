@@ -4,6 +4,7 @@
 #
 # ./behst.py ../data/pressto_LUNG_enhancers.bed dataFolderName
 
+CURRENT_VERSION=3.3
 
 import argparse
 import subprocess
@@ -38,7 +39,7 @@ parser.add_argument("-t", "--transcript-file", metavar='FILE', help="path to the
 parser.add_argument("-i", "--interaction-file", metavar='FILE', help="path to the chromatin interactions file (HICCUPS Format, default DATADIR/hic_8celltypes.hiccups).\n\n", action="store")
 parser.add_argument("--no-gprofiler", help="If activated, generate the gene list and do not call g:ProfileR)\n", action="store_true")
 
-parser.add_argument("-v", "--version", help="print current BEHST version\n", action="version", version='%(prog)s (version 2.9)')
+parser.add_argument("-v", "--version", help="print current BEHST version\n", action="version", version='%(prog)s (version ',CURRENT_VERSION,')')
 
 
 
