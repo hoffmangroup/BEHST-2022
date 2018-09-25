@@ -6,7 +6,7 @@
 #$ -S /bin/bash
 #
 set -o nounset -o pipefail -o errexit
-#set -o xtrace
+set -o xtrace
 
 # ./project.sh ../data/pressto_LUNG_enhancers.bed DEFAULT_EQ DEFAULT_ET DEFAULT_GENE_ANNOTATION_FILE DEFAULT_TRANSCRIPT_ANNOTATION_FILE DEFAULT_LONG_RANGE_INTERACTION_FILE
 
@@ -95,8 +95,9 @@ filename=$filename".bed"
 INPUT_FILE_NEW=${filename//./_}
 
 RESULTS_DIR="../results"
-TEMP_DIR="../temp/rand_"${millisec_time_number}
-mkdir $TEMP_DIR
+mkdir -p $RESULTS_DIR
+TEMP_DIR="./temp-rand_"${millisec_time_number}
+mkdir -p $TEMP_DIR
 
 # GENE_ANNOTATION_FILE="../data/gencode.v19.annotation_withproteinids.gtf"
 # TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.bed"
