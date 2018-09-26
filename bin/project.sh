@@ -14,7 +14,7 @@ set -o nounset -o pipefail -o errexit
 startTime=`date +%s`
 millisec_time_number=$(date +%s)
 
-printf "\n :: BEHST - Biological Enrichment of Hidden Sequence Targets ./project.sh ::\n\n"
+printf "\n :: BEHST - Biological Enrichment of Hidden Sequence Targets ::\n\n"
 
 
 # if [ $1 = "--test" ]; then 
@@ -94,7 +94,7 @@ filename=$filename".bed"
 
 INPUT_FILE_NEW=${filename//./_}
 
-RESULTS_DIR="../results"
+RESULTS_DIR="./results"
 mkdir -p $RESULTS_DIR
 TEMP_DIR="./temp-rand_"${millisec_time_number}
 mkdir -p $TEMP_DIR
@@ -256,7 +256,7 @@ if [ $GPROFILER_OFF = "False" ]; then
 
   #GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_AC"${QUERY_AC}"_EXT"${TSS_EXT}"_sorted_rand"${millisec_time_number}
 
-  GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_rand"${millisec_time_number}
+  GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_rand"${millisec_time_number}".behst"
 
   grep "GO:" $MERGED_TEMP_GO_FILE3_SORTED2 > $GO_LIST_FILE
 
@@ -264,7 +264,7 @@ if [ $GPROFILER_OFF = "False" ]; then
 
   endTime=`date +%s`
   runtime=$((endTime-startTime))
-  printf 'project.sh Total running time: %dhours,  %dminutes, %dseconds\n' $(($runtime/3600)) $(($runtime%3600/60)) $(($runtime%60))
+  printf 'BEHST Total running time: %dhours,  %dminutes, %dseconds\n' $(($runtime/3600)) $(($runtime%3600/60)) $(($runtime%60))
 
   rm -r $TEMP_DIR
 
