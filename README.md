@@ -40,6 +40,8 @@ And then call BEHST with the following command:
 
 `behst pressto_PANCREAS_enhancers.bed -d ~/.local/share/behst`
 
+The output file of BEHST will be found in the `./BEHST-results` folder.
+
 ## Execution instructions - Complete explanation ##
 To run BEHST, you first have to download the default data files. They are genomic regions files containing enhancers of FANTOM5 and VISTA which can be the input of your test, and the files of the data you need to run BEHST: a GENCODE annotation file, a principal transcript APPRIS file, and a Hi-C long-range interaction file.
 
@@ -99,6 +101,9 @@ This command will print the following instructions:
     Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2018. "BEHST: Genomic set
     enrichment analysis enhanced through integration of chromatin long-range
     interactions". In preparation.
+
+The output file of BEHST will be found in the `./BEHST-results` folder.
+    
     
 ## Citation ##
 When using BEHST, please cite the following paper:
