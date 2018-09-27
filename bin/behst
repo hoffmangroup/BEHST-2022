@@ -4,7 +4,7 @@
 #
 # ./behst.py ../data/pressto_LUNG_enhancers.bed dataFolderName
 
-CURRENT_VERSION=3.6
+CURRENT_VERSION=3.7
 
 import argparse
 import subprocess

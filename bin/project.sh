@@ -94,10 +94,11 @@ filename=$filename".bed"
 
 INPUT_FILE_NEW=${filename//./_}
 
-RESULTS_DIR="./results"
+RESULTS_DIR="./BEHST-results"
 mkdir -p $RESULTS_DIR
-TEMP_DIR="./temp-rand_"${millisec_time_number}
-mkdir -p $TEMP_DIR
+#TEMP_DIR="./temp-rand_"${millisec_time_number}
+#mkdir -p $TEMP_DIR
+TEMP_DIR=$(mktemp -d)
 
 # GENE_ANNOTATION_FILE="../data/gencode.v19.annotation_withproteinids.gtf"
 # TRANSCRIPT_ANNOTATION_FILE="../data/appris_data_principal.bed"
