@@ -103,13 +103,14 @@ This command will print the following instructions:
     interactions". In preparation.
 
 The output file of BEHST will be found in the `./BEHST-results` folder.
-    
+
+## Web application ##
+The web application of BEHST is publically available on [behst.hoffmanlab.org](https://behst.hoffmanlab.org)
     
 ## Citation ##
 When using BEHST, please cite the following paper:
 
 > Davide Chicco, Haixin Sarah Bi, Juri Reimand, and Michael M. Hoffman, "BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions", 2018. *In preparation.*
-
 
 ## License ##
 All the code is licensed under the [GNU General Public License, version 2 (GPLv2)](http://www.gnu.org/licenses/gpl-2.0-standalone.html).
