@@ -26,6 +26,9 @@ You can easily install and/or update these packages through **conda** and **bioc
 
 `conda install -c bioconda behst`
 
+## Data files coordinates ##
+All files must be in **GRCh37/hg19** coordinates.
+
 ## Execution instructions - Quick start ##
 
 Download the default BEHST data files into a specific data directory (for example,  ~/.local/share/behst):
