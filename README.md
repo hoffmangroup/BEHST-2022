@@ -113,7 +113,7 @@ The web application of BEHST is publically available on [behst.hoffmanlab.org](h
 ## Citation ##
 When using BEHST, please cite the following paper:
 
-> Davide Chicco, Haixin Sarah Bi, Juri Reimand, and Michael M. Hoffman, "BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions", 2018. *In preparation.*
+> Davide Chicco, Haixin Sarah Bi, Juri Reimand, and Michael M. Hoffman, "BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions", 2019. *In preparation.*
 
 ## License ##
 All the code is licensed under the [GNU General Public License, version 2 (GPLv2)](http://www.gnu.org/licenses/gpl-2.0-standalone.html).
