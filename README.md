@@ -103,7 +103,7 @@ This command will print the following instructions:
 
     Citation: Chicco D, Bi HS, Reimand J, Hoffman MM. 2019. "BEHST: Genomic set
     enrichment analysis enhanced through integration of chromatin long-range
-    interactions". In preparation.
+    interactions", bioRxiv 168427, 2019. https://doi.org/10.1101/168427
 
 The output file of BEHST will be found in the `./BEHST-results` folder.
 
@@ -113,7 +113,7 @@ The web application of BEHST is publically available on [behst.hoffmanlab.org](h
 ## Citation ##
 When using BEHST, please cite the following paper:
 
-> Davide Chicco, Haixin Sarah Bi, Juri Reimand, and Michael M. Hoffman, "BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions", 2019. *In preparation.*
+> Davide Chicco, Haixin Sarah Bi, Juri Reimand, and Michael M. Hoffman, "BEHST: Genomic set enrichment analysis enhanced through integration of chromatin long-range interactions", bioRxiv 168427, 2019. [https://doi.org/10.1101/168427](https://doi.org/10.1101/168427) 
 
 ## License ##
 All the code is licensed under the [GNU General Public License, version 2 (GPLv2)](http://www.gnu.org/licenses/gpl-2.0-standalone.html).
