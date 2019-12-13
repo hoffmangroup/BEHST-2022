@@ -4,7 +4,7 @@
 #
 # ./behst.py ../data/pressto_LUNG_enhancers.bed dataFolderName
 
-CURRENT_VERSION=3.7
+CURRENT_VERSION=3.8
 
 import argparse
 import subprocess
@@ -17,7 +17,7 @@ start_time = datetime.now()
 
 INPUT_FILE="unknown"
 BEHST_DATA_FOLDER="~/.local/share/behst"
-TSS_EXT="default_et"
+TARGET_AC="default_et"
 QUERY_AC="default_eq"
 GENE_ANNOTATION_FILE="default_gene_annotation_file"
 TRANSCRIPT_ANNOTATION_FILE="default_transcript_annotation_file"
@@ -53,7 +53,7 @@ if args.data:
   BEHST_DATA_FOLDER = args.data
 
 if args.target_extension:
-  TSS_EXT = args.target_extension
+  TARGET_AC = args.target_extension
 
 if args.query_extension:
   QUERY_AC = args.query_extension
@@ -73,7 +73,7 @@ if args.no_gprofiler:
 
 print("INPUT_FILE: ",INPUT_FILE)
 print("BEHST_DATA_FOLDER: ",BEHST_DATA_FOLDER)
-print("TSS_EXT: ",TSS_EXT)
+print("TARGET_AC: ",TARGET_AC)
 print("QUERY_AC: ",QUERY_AC)
 print("GENE_ANNOTATION_FILE: ",GENE_ANNOTATION_FILE)
 print("TRANSCRIPT_ANNOTATION_FILE: ",TRANSCRIPT_ANNOTATION_FILE)
@@ -82,7 +82,7 @@ print("GPROFILER_OFF: ", GPROFILER_OFF)
 
 # sys.exit(0)
 
-# subprocess.call(['./project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])
+# subprocess.call(['./project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TARGET_AC, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE])
 # $PREFIX/bin
 
-subprocess.call(['/usr/bin/env', 'bash', 'project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TSS_EXT, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE, GPROFILER_OFF])
+subprocess.call(['/usr/bin/env', 'bash', 'project.sh', INPUT_FILE, BEHST_DATA_FOLDER, QUERY_AC, TARGET_AC, GENE_ANNOTATION_FILE, TRANSCRIPT_ANNOTATION_FILE, HI_C_FILE, GPROFILER_OFF])

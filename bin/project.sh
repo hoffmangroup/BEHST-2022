@@ -38,8 +38,14 @@ printf "\n :: BEHST - Biological Enrichment of Hidden Sequence Targets ::\n\n"
 
 INPUT_FILE=$1
 BEHST_DATA_FOLDER=$2
-QUERY_AC=$3
-TSS_EXT=$4
+QUERY_AC=$3 # eQ in the paper
+
+# TSS_EXT=$4 past version
+
+TSS_EXT=16000 # default TSS extension
+TARGET_AC=$4 # eT in the paper (new variable)
+
+
 GENE_ANNOTATION_FILE=$5
 TRANSCRIPT_ANNOTATION_FILE=$6
 HI_C_FILE=$7
@@ -48,7 +54,7 @@ GPROFILER_OFF=$8
 ORIGINAL_INPUT_FILE=$1
 ORIGINAL_BEHST_DATA_FOLDER=$2
 ORIGINAL_QUERY_AC=$3
-ORIGINAL_TSS_EXT=$4
+ORIGINAL_TARGET_AC=$4
 ORIGINAL_GENE_ANNOTATION_FILE=$5
 ORIGINAL_TRANSCRIPT_ANNOTATION_FILE=$6
 ORIGINAL_HI_C_FILE=$7
@@ -63,12 +69,12 @@ if [ $QUERY_AC = "default_eq" ]; then
    QUERY_AC=24100
 fi
 
-if [ $TSS_EXT = "default_et" ]; then 
-   TSS_EXT=9400
+if [ $TARGET_AC = "default_et" ]; then 
+   TARGET_AC=9400
 fi
 
-printf "\n The query extension parameter is  "$QUERY_AC "\n"
-printf "\n The TSS extension parameter is  "$TSS_EXT "\n\n"
+printf "\n The query extension eQ parameter is  "$QUERY_AC "\n"
+printf "\n The target extension eT parameter is  "$TARGET_AC "\n\n"
 
 
 if [ $GENE_ANNOTATION_FILE = "default_gene_annotation_file" ]; then 
@@ -105,9 +111,9 @@ TEMP_DIR=$(mktemp -d)
 # HI_C_FILE="../data/hic_8celltypes.hiccups"
 
 HI_C_FILTERED_TEMP_FILE="hi_c_filtered.txt"
-OUTPUT_FILE=${INPUT_FILE_NEW}"_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}"_gene_list.txt"
+OUTPUT_FILE=${INPUT_FILE_NEW}"_QUERY"${QUERY_AC}"_TARGET"${TARGET_AC}"_gene_list.txt"
 
-ANALYSIS_RESULTS="gProfiler_results_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}
+ANALYSIS_RESULTS="gProfiler_results_QUERY"${QUERY_AC}"_TARGET"${TARGET_AC}
 
 # to read input from stdin or user-specified argument
 # if there is at least one argument and the first argument is a file, assign it to input, otherwise assign stdin to input
@@ -128,22 +134,13 @@ ANALYSIS_RESULTS="gProfiler_results_QUERY"${QUERY_AC}"_TSS"${TSS_EXT}
 hiC_parser.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
 
 
-# if [ $ORIGINAL_GENE_ANNOTATION_FILE = "default_gene_annotation_file" ] && [ $ORIGINAL_TRANSCRIPT_ANNOTATION_FILE = "default_transcript_annotation_file" ]; then
-#     GENE_ANNOTATION_PICKLED_FILE=$BEHST_DATA_FOLDER"/gencode.v19.annotation_withproteinids_gtf.pkl"
-#     TRANSCRIPT_ANNOTATION_PICKLE_FILE=$BEHST_DATA_FOLDER"/appris_data_principal_bed.pkl"
-#     
-#     ./gene_annotation_parser_load_pickled_files.py "$GENE_ANNOTATION_PICKLED_FILE" "$TRANSCRIPT_ANNOTATION_PICKLE_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
-# else
-#     # standard treatment
-#     ./gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
-# fi
 
 gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
 
 
-# Similar to bedtools intersect, bedtools window searches for overlapping features in A and B. However, window adds a specified number (1000, by default) of base pairs upstream and downstream of each feature in A. In effect, this allows features in B that are “near” features in A to be detected.
+# Similar to bedtools intersect, bedtools window searches for overlapping features in A and B. However, window adds a specified number (1000, by default) of base pairs upstream and downstream of each feature in A. In effect, this allows features in B that are â€œnearâ€ features in A to be detected.
 
-sort -V $INPUT_FILE | bedtools window -w $QUERY_AC -a stdin -b "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE" | awk -F $'\t' '{print $(NF-2), $(NF-1), $NF}' OFS=$'\t' | sort -V | uniq | bedtools window -w $QUERY_AC -a stdin -b "${TEMP_DIR}/principal_transcripts.bed" | cut -f7 | sort -V | uniq > "${RESULTS_DIR}/$OUTPUT_FILE"
+sort -V $INPUT_FILE | bedtools window -w $QUERY_AC -a stdin -b "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE" | awk -F $'\t' '{print $(NF-2), $(NF-1), $NF}' OFS=$'\t' | sort -V | uniq | bedtools window -w $TARGET_AC -a stdin -b "${TEMP_DIR}/principal_transcripts.bed" | cut -f7 | sort -V | uniq > "${RESULTS_DIR}/$OUTPUT_FILE"
 
 # comment the following line to save the transcripts
 rm "${TEMP_DIR}/principal_transcripts.bed" "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
@@ -238,7 +235,7 @@ if [ $GPROFILER_OFF = "False" ]; then
   #     printf "${TAB}${TAB}${TAB}${TAB}" > ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
   # fi
 
-  sed "1 s/$/ ${TAB}${QUERY_AC} ${TAB}${TSS_EXT}/" ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
+  sed "1 s/$/ ${TAB}${QUERY_AC} ${TAB}${TARGET_AC}/" ${GPROFILER_OUTPUT_FILE}"_sorted_rand"${millisec_time_number}
 
   rm $LEFT_TEMP_GO_FILE
   rm $LEFT_TEMP_GO_FILE2
@@ -255,7 +252,7 @@ if [ $GPROFILER_OFF = "False" ]; then
   rm $LEFT_TEMP_GO_FILE3
 
 
-  #GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_AC"${QUERY_AC}"_EXT"${TSS_EXT}"_sorted_rand"${millisec_time_number}
+  #GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_AC"${QUERY_AC}"_EXT"${TARGET_AC}"_sorted_rand"${millisec_time_number}
 
   GO_LIST_FILE=${GPROFILER_OUTPUT_FILE}"GO_term_list_rand"${millisec_time_number}".behst"
 
