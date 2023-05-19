@@ -127,9 +127,9 @@ ANALYSIS_RESULTS="gProfiler_results_QUERY"${QUERY_AC}"_TARGET"${TARGET_AC}
 #
 # part replaced by the previous pickle phase
 #
-hiC_parser.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
+python hiC_parser.py "$HI_C_FILE" | sort -V > "${TEMP_DIR}/$HI_C_FILTERED_TEMP_FILE"
 
-gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
+python gene_annotation_parser.py "$GENE_ANNOTATION_FILE" "$TRANSCRIPT_ANNOTATION_FILE" $TSS_EXT > "${TEMP_DIR}/principal_transcripts.bed"
 
 
 # Similar to bedtools intersect, bedtools window searches for overlapping features in A and B. However, window adds a specified number (1000, by default) of base pairs upstream and downstream of each feature in A. In effect, this allows features in B that are â€œnearâ€ features in A to be detected.
